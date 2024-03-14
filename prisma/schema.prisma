@@ -1,0 +1,114 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  content   String?
+  published Boolean  @default(false)
+  authorId  Int
+  author    User     @relation(fields: [authorId], references: [id])
+
+  @@index([authorId], map: "Post_authorId_fkey")
+}
+
+model User {
+  id                  Int                  @id @default(autoincrement())
+  userId              String               @unique @default(uuid())
+  email               String               @unique
+  name                String
+  company             String
+  rank                String
+  funnel              String?
+  password            String
+  image               String               @default("/images/noUser.png")
+  role                Role                 @default(USER)
+  provider            String               @default("credentials")
+  createdAt           DateTime             @default(now())
+  emailVerified       DateTime?            @map("verifiedAt")
+  deletedYn           Boolean              @default(false)
+  DeleteAccount       DeleteAccount[]
+  passwordResetTokens PasswordResetToken[]
+  posts               Post[]
+  Project             Project[]
+}
+
+model PasswordResetToken {
+  id          Int       @id @default(autoincrement())
+  token       String    @unique
+  createdAt   DateTime  @default(now())
+  resetAt     DateTime?
+  tokenUserId Int
+  user        User      @relation(fields: [tokenUserId], references: [id])
+
+  @@index([tokenUserId], map: "PasswordResetToken_tokenUserId_fkey")
+}
+
+model DeleteAccount {
+  id           Int      @id @default(autoincrement())
+  deletedAt    DateTime @default(now())
+  reason       String?
+  deleteUserId String
+  user         User     @relation(fields: [deleteUserId], references: [userId])
+
+  @@index([deleteUserId], map: "DeleteAccount_deleteUserId_fkey")
+}
+
+model Project {
+  id                               Int      @id @default(autoincrement())
+  userId                           String
+  projectCategory                  String
+  projectField                     String
+  projectProgressClassification    String
+  planningStatus                   String
+  detailedPlanningStatus           String?
+  detailedPlanningText             String?
+  referenceMaterials               String?
+  projectTitle                     String
+  detailedTaskDescription          String
+  relatedTechnologies              String?
+  availableBudget                  Int
+  budgetNegotiable                 Boolean?
+  expectedStartDate                DateTime
+  startDateNegotiable              Boolean?
+  expectedEndDate                DateTime
+  endDateNegotiable              Boolean?
+  expectedDuration                 String
+  durationNegotiable               Boolean?
+  preMeetingMethod                 String
+  meetingMethod                    String
+  meetingFrequency                 String
+  clientLocationCity               String
+  clientLocationDistrict           String
+  applicationDeadline              DateTime
+  isFundingAvailable               String
+  isFundingAvailableSub            String?
+  applicantRequirements            String?
+  applicantRequirementsSub         String?
+  preliminaryVerificationQuestions String?
+  collaborationTeamComposition     String?
+  isCollaborationTeamComposition   Boolean?
+  itProjectManagementExperience    String
+  futurePlans                      String?
+  projectPriorityFirst             String?
+  projectPrioritySecond            String?
+  projectPriorityThird             String?
+  interestedProducts               String
+  createdAt                        DateTime @default(now())
+  user                             User     @relation(fields: [userId], references: [userId])
+
+  @@index([userId], map: "Project_userId_fkey")
+}
+
+enum Role {
+  USER
+  ADMIN
+}

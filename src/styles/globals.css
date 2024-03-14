@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'NotoSansKR-Regular';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#wrap {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.sample-slider {
+  width: 100%;
+  margin-bottom: 70px;
+}
+.swiper-slide {
+  margin-left: 24px;
+}
+.sample-slider img {
+  width: 100%;
+}
+.sample-slider .swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+/* Chrome, Safari, Opera 등 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Firefox */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* IE, Edge */
+.no-scrollbar {
+  -ms-overflow-style: none;
+}
