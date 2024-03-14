@@ -6,7 +6,7 @@ const Dev = () => {
     <div>
       <div
         id="dev"
-        className=" top-0  mt-[-152px]  max-h-fit w-full bg-[url('/img/h_bg.png')]  bg-cover bg-center bg-no-repeat py-24 lg:px-6"
+        className="top-0 mt-[-152px]  max-h-fit w-full bg-[url('/img/h_bg.png')]  bg-cover bg-center bg-no-repeat py-24 lg:px-6"
       >
         <div className="relative top-0 m-auto max-w-[1000px] object-bottom pt-28 align-bottom">
           <div className=" mt-80 flex max-h-96  sm:mt-40">
