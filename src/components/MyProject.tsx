@@ -8,8 +8,6 @@ interface MyProjectProps {
   project: Project;
 }
 const MyProject: React.FC<MyProjectProps> = ({ project }) => {
-  console.log(project);
-
   const projectCategoryObj = project.projectCategory;
   const projectCategory = projectCategoryObj
     .split('"')

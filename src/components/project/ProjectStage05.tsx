@@ -153,6 +153,7 @@ const ProjectStage05: React.FC<ProjectStage05Props> = ({ stage }) => {
         </div>
       </div>
       <ProjectStageButtonWrap
+        className="sm:mb-28 sm:pb-10"
         stage={stage}
         isNextButtonDisabled={isNextButtonDisabled}
       />
