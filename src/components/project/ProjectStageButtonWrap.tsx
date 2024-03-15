@@ -10,6 +10,7 @@ interface StageButtonProps {
   userId?: string;
   stage: number;
   isNextButtonDisabled: boolean;
+  className?: string;
 }
 
 type NonFunctionProperties<T> = Pick<
@@ -37,6 +38,7 @@ const ProjectStageButtonWrap: React.FC<StageButtonProps> = ({
   userId,
   stage,
   isNextButtonDisabled,
+  className,
 }) => {
   const router = useRouter();
   const nonFunctionState = useProjectRequestStore(selectNonFunctionState);
@@ -49,7 +51,7 @@ const ProjectStageButtonWrap: React.FC<StageButtonProps> = ({
     })
   );
   return (
-    <div className="flex justify-between">
+    <div className={cn('flex justify-between', className)}>
       <button
         className={cn(
           'rounded-full px-6 py-2 text-white',
