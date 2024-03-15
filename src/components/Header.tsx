@@ -9,6 +9,7 @@ import { useSidebar } from './providers';
 const Header: FC = () => {
   const { isOpen, setIsOpen } = useSidebar();
   const { data: session } = useSession();
+  console.log('session', session);
 
   return (
     <div className="w-full sm:m-auto   sm:w-[97%] 2sm:w-[95%] ">
@@ -79,7 +80,14 @@ const Header: FC = () => {
                         <li>{session?.user.name} 님</li>
                       </Link>
                       <p className="mx-2">/</p>
-                      <button className="mb-2" onClick={() => signOut()}>
+                      <button
+                        className="mb-2"
+                        onClick={() => {
+                          signOut({
+                            callbackUrl: `/login`,
+                          });
+                        }}
+                      >
                         로그아웃
                       </button>
                     </>
