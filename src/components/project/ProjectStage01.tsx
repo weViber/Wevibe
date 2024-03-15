@@ -27,7 +27,7 @@ const ProjectStage01: React.FC<ProjectStage01Props> = ({ stage }) => {
     projectCategory.length === 0 || projectField.length === 0;
 
   return (
-    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+    <div className="flex h-auto w-full flex-col gap-12 overflow-y-auto px-16 py-10">
       <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'프로젝트 카테고리'} necessary={true} />
         <OptionSubtitle
