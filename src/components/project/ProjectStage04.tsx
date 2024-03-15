@@ -98,7 +98,7 @@ const ProjectStage04: React.FC<ProjectStage04Props> = ({ stage }) => {
           icon={<FaWonSign />}
           value={availableBudget}
           onKeyDown={(e) => {
-            if (!/[0-9]/.test(e.key)) {
+            if (!/[0-9]/.test(e.key) && e.key !== 'Backspace') {
               e.preventDefault();
             }
           }}
