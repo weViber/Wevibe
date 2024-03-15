@@ -77,7 +77,7 @@ const ImageChangeModal = ({
         )}
       </div>
       <div className="m-4 flex justify-around py-4 ">
-        <div className=" relative mt-1.5 h-[36px] w-[80px] overflow-hidden  text-white">
+        <div className=" relative my-4 mb-3 h-[36px] w-[80px] overflow-hidden text-white">
           {/* <img src="/Icon/Icon-open.jpg" className=" p-0 pl-1" alt="open" /> */}
           <input
             type="file"
@@ -93,7 +93,7 @@ const ImageChangeModal = ({
             저장
           </button>
           <button
-            className="-my-4 mb-3 block rounded-lg border-2 p-2 px-4  font-bold text-[#8D8D8D]"
+            className="my-4 mb-3 block rounded-lg border-2 p-2 px-4  font-bold text-[#8D8D8D]"
             onClick={() => onRequestClose()}
           >
             닫기
