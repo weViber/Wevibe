@@ -11,7 +11,7 @@ const status = [
   '3. 프로젝트 상세',
   '4. 예산 및 일정',
   '5. 미팅',
-  '6. 모집 요건',
+  '6. 클라이언트 정보',
   '7. 추가 정보',
 ];
 const ProjectSidebar: React.FC<ProjectSidebarProps> = ({ stage }) => {
