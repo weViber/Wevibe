@@ -3,11 +3,24 @@
 import { Project } from '@prisma/client';
 import { format } from 'date-fns';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 interface MyProjectProps {
   project: Project;
 }
 const MyProject: React.FC<MyProjectProps> = ({ project }) => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const projectCategoryObj = project.projectCategory;
   const projectCategory = projectCategoryObj
     .split('"')
@@ -171,7 +184,9 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
                 <p>{project.projectProgressClassification}</p>
               </div>
               <div className="flex">
-                <p className="w-[150px]  text-[#757575]   ">• 기획 상태</p>
+                <p className="w-[150px] text-[#757575] sm:w-[115px]   ">
+                  • 기획 상태
+                </p>
                 <p>{project.planningStatus}</p>
               </div>
               <div className="flex">
@@ -185,12 +200,25 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
                 <p>{project.collaborationTeamComposition}</p>
               </div>
               <div className="flex  ">
-                <p className="w-[150px]  text-[#757575]   ">• 우선순위 </p>
+                <p className="w-[150px]  text-[#757575] sm:w-[115px]   ">
+                  • 우선순위{' '}
+                </p>
                 <p>
-                  {' '}
-                  1순위 - {project.projectPriorityFirst}&nbsp;&nbsp;&nbsp; 2순위
-                  - {project.projectPrioritySecond}&nbsp;&nbsp;&nbsp; 3순위 -
-                  {project.projectPriorityThird}
+                  {windowWidth > 500 ? (
+                    <span>
+                      1순위 - {project.projectPriorityFirst}&nbsp;&nbsp;&nbsp;
+                      2순위 - {project.projectPrioritySecond}&nbsp;&nbsp;&nbsp;
+                      3순위 - {project.projectPriorityThird}
+                    </span>
+                  ) : (
+                    <span>
+                      1순위 - {project.projectPriorityFirst}
+                      <br />
+                      2순위 - {project.projectPrioritySecond}
+                      <br />
+                      3순위 - {project.projectPriorityThird}
+                    </span>
+                  )}
                 </p>
               </div>
               <div className="flex">

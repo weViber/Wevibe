@@ -91,10 +91,6 @@ export const authOptions: NextAuthOptions = {
     async signIn({ user, profile, account }) {
       try {
         if (account?.provider === 'kakao' || 'google' || 'naver') {
-          console.log('profile :: ', profile);
-          console.log('user :: ', user);
-          console.log('account :: ', account);
-
           const db_user = await prisma.user.findUnique({
             where: { email: user.email! },
           });
@@ -151,7 +147,10 @@ export const authOptions: NextAuthOptions = {
         token.userId = user.userId;
       }
       if (trigger === 'update') {
-        token.image = session.info;
+        token.image = session.updateImage;
+        token.name = session.updateName;
+        token.company = session.upadeteCompany;
+        token.rank = session.updateRank;
       }
       return token;
     },

@@ -16,7 +16,7 @@ import { toast } from 'react-toastify';
 const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
   const router = useRouter();
   const { userId } = params;
-  const { data: session } = useSession();
+  const { data: session, update: sessionUpdate } = useSession();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   const openModal = () => {
@@ -95,6 +95,11 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
 
                 if (response.status === 200) {
                   toast.success('회원정보 수정 성공!');
+                  sessionUpdate({
+                    updateName: data.name,
+                    upadeteCompany: data.company,
+                    updateRank: data.rank,
+                  });
                   resetForm();
                   // router.push('/');
                 }

@@ -40,7 +40,7 @@ const ImageChangeModal = ({
       const { data, error } = await supabase.storage
         .from('profile-images')
         .upload(storageFilePath, selectedFile);
-      sessionUpdate({ info: filePath });
+      sessionUpdate({ updateImage: filePath });
       onRequestClose();
 
       if (error) {
@@ -93,7 +93,7 @@ const ImageChangeModal = ({
             저장
           </button>
           <button
-            className='-my-4 mb-3 block rounded-lg border-2 p-2 px-4  font-bold text-[#8D8D8D]'
+            className="-my-4 mb-3 block rounded-lg border-2 p-2 px-4  font-bold text-[#8D8D8D]"
             onClick={() => onRequestClose()}
           >
             닫기
