@@ -215,7 +215,7 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               </p>
               <br />
               <p className="text-lg font-semibold text-black">상세 기획 상태</p>
-              <p className="whitespace-pre"> - {detailedPlanningStatus}</p>
+              <p className="whitespace-pre-line"> - {detailedPlanningStatus}</p>
               <br />
               <p className="text-lg font-semibold text-black">기획문서</p>
               <p> {project.detailedPlanningText}</p>
@@ -228,7 +228,7 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               <p className="text-lg font-semibold text-black">
                 상세 업무 내용{' '}
               </p>
-              <p className="whitespace-pre">
+              <p className="whitespace-pre-line">
                 {project.detailedTaskDescription}
               </p>
               <br />
@@ -236,23 +236,23 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               <p> {JSON.parse(project.referenceMaterials || '')}</p>
               <br />
               <p className="text-lg font-semibold text-black">향후 계획</p>
-              <p className="whitespace-pre"> - {futurePlans}</p>
+              <p className="whitespace-pre-line"> - {futurePlans}</p>
             </div>
             <hr />
 
             {/* 미팅 */}
             <h3 className="  text-xl  font-semibold"> 미팅방식</h3>
-            <div className="flex flex-wrap justify-between text-base leading-9 text-[#4f4f4f] ">
-              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3">
+            <div className="flex flex-wrap justify-between text-base leading-9 text-[#4f4f4f] sm:justify-center sm:leading-8 ">
+              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3 sm:w-full">
                 프로젝트 진행 중 미팅 <br /> - {project.preMeetingMethod}
               </p>
-              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3">
+              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3 sm:w-full">
                 진행 중 미팅 <br />- {project.meetingMethod}
               </p>
-              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3">
+              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3 sm:w-full">
                 미팅 주기 <br /> - {project.meetingFrequency}
               </p>
-              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3">
+              <p className=" m-2 min-h-28 w-[46%] rounded-xl border-2 px-6 py-3 sm:w-full">
                 회사 위치 <br /> - {project.clientLocationCity}{' '}
                 {project.clientLocationDistrict}
               </p>
@@ -267,13 +267,13 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               <p>{project.isFundingAvailableSub}</p>
             </div>
             <h5 className="text-lg">클라이언트 정보</h5>
-            <div className="whitespace-pre text-base leading-8 text-[#4f4f4f]">
+            <div className="whitespace-pre-line text-base leading-8 text-[#4f4f4f]">
               <p> {applicantRequirements}</p>
               <p className="py-1" />
               <p>{applicantRequirementsSub}</p>
               <p>{project.isCollaborationTeamComposition}</p>
               <hr className="my-4 opacity-70" />
-              <h5 className="mb-3 whitespace-pre text-lg text-black">
+              <h5 className="mb-3 whitespace-pre-line text-lg text-black">
                 사전 검증 질문
               </h5>
               <p> - {project.preliminaryVerificationQuestions}</p>

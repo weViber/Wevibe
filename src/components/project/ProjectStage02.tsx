@@ -72,7 +72,7 @@ const ProjectStage02: React.FC<ProjectStage02Props> = ({ stage }) => {
             '업무 범위 산정과 예산 및 일정 상담을 위해 현재 기획 상태를 선택해 주세요.'
           }
         />
-        <div className="flex gap-4">
+        <div className="flex gap-4 sm:flex-col">
           {planningStatusOptions.map((option, index) => (
             <SelectCard
               key={index}

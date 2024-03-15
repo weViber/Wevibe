@@ -37,7 +37,7 @@ const SignUpForm = () => {
                 }
               >
                 <RiKakaoTalkFill className="text-xl" />
-                카카오로 1초 만에 시작하기
+                카카오로 시작하기
               </button>
               <button
                 className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
@@ -46,7 +46,7 @@ const SignUpForm = () => {
                 }
               >
                 <SiNaver className="text-xl" />
-                네이버 아이디로 시작하기
+                네이버로 시작하기
               </button>
               <button
                 className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
@@ -55,7 +55,7 @@ const SignUpForm = () => {
                 }
               >
                 <FcGoogle className="text-xl" />
-                구글 아이디로 시작하기
+                구글로 시작하기
               </button>
             </div>
             <div>

@@ -55,7 +55,7 @@ const LoginForm = () => {
               }
             >
               <RiKakaoTalkFill className="text-xl" />
-              카카오로 1초 만에 가입하기
+              카카오 로그인
             </button>
             <button
               className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#00C900] px-5 py-3 font-medium text-white"
@@ -64,7 +64,7 @@ const LoginForm = () => {
               }
             >
               <SiNaver className="text-xl" />
-              네이버 아이디로 가입하기
+              네이버 로그인
             </button>
             <button
               className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
@@ -73,7 +73,7 @@ const LoginForm = () => {
               }
             >
               <FcGoogle className="text-xl" />
-              구글 아이디로 가입하기
+              구글 로그인
             </button>
           </div>
           <div>

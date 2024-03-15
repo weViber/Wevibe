@@ -33,7 +33,7 @@ const ProjectStage01: React.FC<ProjectStage01Props> = ({ stage }) => {
         <OptionSubtitle
           subtitle={'해당하는 프로젝트 카테고리를 모두 선택해 주세요.'}
         />
-        <div className="flex gap-4">
+        <div className="flex gap-4 sm:flex-col">
           {categoryOptions.map((content, index) => (
             <SelectCard
               key={index}

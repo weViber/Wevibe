@@ -3,7 +3,7 @@
 const nextConfig = {
   output: 'standalone',
   reactStrictMode: true,
-  experimental: { appDir: true }, 
+  experimental: { appDir: true },
   images: {
     remotePatterns: [
       {
@@ -21,6 +21,12 @@ const nextConfig = {
       {
         protocol: 'http',
         hostname: 'k.kakaocdn.net',
+        port: '',
+        pathname: '**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'lhbgoxzhnhiklwcgcdjh.supabase.co',
         port: '',
         pathname: '**',
       },

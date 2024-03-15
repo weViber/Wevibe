@@ -178,9 +178,9 @@ const ProjectStage04: React.FC<ProjectStage04Props> = ({ stage }) => {
         <OptionSubtitle subtitle={'프로젝트 진행 기간을 입력해 주세요.'} />
         <Input
           value={
-            (expectedStartDate &&
-              expectedEndDate &&
-              calculateWeekdays(expectedStartDate, expectedEndDate)) + '일'
+            (expectedStartDate && expectedEndDate
+              ? calculateWeekdays(expectedStartDate, expectedEndDate)
+              : 0) + '일'
           }
           onChange={(e) => {
             updateState('expectedDuration', e.target.value);

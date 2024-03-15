@@ -138,7 +138,7 @@ const ProjectStage07: React.FC<ProjectStage07Props> = ({ userId, stage }) => {
             '프로젝트 우선순위를 알려주시면, 우선순위를 고려하여 지원합니다.'
           }
         />
-        <div className="flex w-full gap-4">
+        <div className="flex w-full gap-4 sm:flex-col">
           <select
             className="flex-1 rounded-md border border-gray-300 p-2 transition-all hover:border-gray-400"
             value={projectPriorityFirst}
