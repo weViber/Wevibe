@@ -33,7 +33,7 @@ let transporter = nodemailer.createTransport({
 });
 
 export async function verifyEmail({ email, id }: VerifyEmailProps) {
-  const mailData = await {
+  const mailData = {
     to: email,
     subject: `이메일 인증`,
     from: process.env.SYSTEM_EMAIL_SENDER,
@@ -96,7 +96,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
     `,
   };
 
-  return transporter.sendMail(mailData);
+  return await transporter.sendMail(mailData);
 }
 
 export async function forgotPassword({
@@ -104,7 +104,7 @@ export async function forgotPassword({
   email,
   name,
 }: ForgotPasswordProps) {
-  const mailData = await {
+  const mailData = {
     to: email,
     subject: `비밀번호 변경`,
     from: process.env.SYSTEM_EMAIL_SENDER,
@@ -167,5 +167,5 @@ export async function forgotPassword({
     `,
   };
 
-  return transporter.sendMail(mailData);
+  return await transporter.sendMail(mailData);
 }
