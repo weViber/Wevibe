@@ -33,7 +33,7 @@ let transporter = nodemailer.createTransport({
 });
 
 export async function verifyEmail({ email, id }: VerifyEmailProps) {
-  const mailData = {
+  const mailData = await {
     to: email,
     subject: `이메일 인증`,
     from: process.env.SYSTEM_EMAIL_SENDER,
@@ -53,7 +53,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
         <a href="https://www.wevibe.kr" target="Wevibe">
           <img
             style="width: 150px"
-            src="/public/img/Logoimg3.png"
+            src="https://lhbgoxzhnhiklwcgcdjh.supabase.co/storage/v1/object/public/profile-images/Logoimg3.png?t=2024-03-18T02%3A49%3A18.383Z"
             alt="Wevibe"
           />
         </a>
@@ -104,7 +104,7 @@ export async function forgotPassword({
   email,
   name,
 }: ForgotPasswordProps) {
-  const mailData = {
+  const mailData = await {
     to: email,
     subject: `비밀번호 변경`,
     from: process.env.SYSTEM_EMAIL_SENDER,
@@ -124,7 +124,7 @@ export async function forgotPassword({
         <a href="https://www.wevibe.kr" target="Wevibe">
           <img
             style="width: 150px"
-            src="/public/img/Logoimg3.png"
+            src="https://lhbgoxzhnhiklwcgcdjh.supabase.co/storage/v1/object/public/profile-images/Logoimg3.png?t=2024-03-18T02%3A49%3A18.383Z"
             alt="Wevibe"
           />
         </a>

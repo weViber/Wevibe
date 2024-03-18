@@ -87,14 +87,14 @@ const LoginForm = () => {
               ref={emailRef}
               type="text"
               name="email"
-              placeholder="mouse@whitemouse.dev"
+              placeholder="이메일 입력"
             />
             <IconInput
               icon={<MdKey />}
               ref={passwordRef}
               type="password"
               name="password"
-              placeholder="········"
+              placeholder="비밀번호 입력"
             />
             <Button type="submit" className="">
               Login
