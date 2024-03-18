@@ -1,3 +1,4 @@
+import { verifyEmail } from '@/libs/nodemailer';
 import prisma from '@/libs/prisma';
 import { NextResponse } from 'next/server';
 
@@ -35,7 +36,10 @@ export async function PUT(
         emailVerified: new Date(),
       },
     });
-
+    verifyEmail({
+      email: user.email,
+      id: user.userId,
+    });
     return new NextResponse(JSON.stringify({ message: 'Verified' }), {
       status: 201,
     });

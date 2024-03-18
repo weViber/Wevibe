@@ -36,7 +36,7 @@ export default function ForgotPassword() {
                 if (response.status === 200) {
                   toast.success('메일 발송 성공!');
                   resetForm();
-                  router.push('/forgot-password/success');
+                  router.push('/');
                 }
               } catch (error: any) {
                 toast.error(
