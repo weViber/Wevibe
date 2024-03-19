@@ -15,9 +15,9 @@ const config: Config = {
       },
       screens: {
 
-        '2sm': { max: '550px' },
+        '2sm': { max: '650px' },
 
-        sm: { max: '640px' },
+        sm: { max: '700px' },
         // => @media (min-width: 640px) { ... }
 
         md: { max: '768px' },

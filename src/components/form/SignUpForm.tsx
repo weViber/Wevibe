@@ -21,43 +21,12 @@ const SignUpForm = () => {
       className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6 2sm:px-2"
     >
       <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
-        <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-2 ">
+        <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <div className="mx-auto flex w-full max-w-[330px] flex-col gap-8 ">
             <h1 className="mt-4 from-black pt-9 text-center text-3xl font-bold  leading-8">
               회원가입
             </h1>
-            <div className="mt-4">
-              <p className="my-3 pb-2 text-center text-xl text-[#919191]">
-                간편로그인
-              </p>
-              <button
-                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#FEE500] px-5 py-3 font-medium text-slate-900"
-                onClick={() =>
-                  signIn('kakao', { redirect: true, callbackUrl: '/' })
-                }
-              >
-                <RiKakaoTalkFill className="text-xl" />
-                카카오로 시작하기
-              </button>
-              <button
-                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
-                onClick={() =>
-                  signIn('naver', { redirect: true, callbackUrl: '/' })
-                }
-              >
-                <SiNaver className="text-xl" />
-                네이버로 시작하기
-              </button>
-              <button
-                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
-                onClick={() =>
-                  signIn('google', { redirect: true, callbackUrl: '/' })
-                }
-              >
-                <FcGoogle className="text-xl" />
-                구글로 시작하기
-              </button>
-            </div>
+          
             <div>
               <p className="mt-8  text-center text-xl text-[#919191]">
                 이메일로 회원가입
@@ -235,7 +204,40 @@ const SignUpForm = () => {
               )}
             </Formik>
           </div>
+          <div className="mb-4">
+              <p className="my-3 pb-2 text-center text-xl text-[#919191]">
+                간편로그인
+              </p>
+              <button
+                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#FEE500] px-5 py-3 font-medium text-slate-900"
+                onClick={() =>
+                  signIn('kakao', { redirect: true, callbackUrl: '/' })
+                }
+              >
+                <RiKakaoTalkFill className="text-xl" />
+                카카오로 시작하기
+              </button>
+              <button
+                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
+                onClick={() =>
+                  signIn('naver', { redirect: true, callbackUrl: '/' })
+                }
+              >
+                <SiNaver className="text-xl" />
+                네이버로 시작하기
+              </button>
+              <button
+                className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
+                onClick={() =>
+                  signIn('google', { redirect: true, callbackUrl: '/' })
+                }
+              >
+                <FcGoogle className="text-xl" />
+                구글로 시작하기
+              </button>
+            </div>
         </div>
+        
       </div>
     </div>
   );

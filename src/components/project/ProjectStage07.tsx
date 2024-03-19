@@ -50,7 +50,7 @@ const ProjectStage07: React.FC<ProjectStage07Props> = ({ userId, stage }) => {
     !itProjectManagementExperience;
 
   return (
-    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10 2sm:px-8 2sm:pb-0">
       <ProjectHomeButtonWrap />
       <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'협업 인력 구성'} necessary={true} />

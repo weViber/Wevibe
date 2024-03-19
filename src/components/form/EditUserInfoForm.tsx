@@ -1,6 +1,6 @@
 'use client';
 
-import noUser from '@/../public/images/noUser.png';
+import noUser from '@/../nouserpublic/images/noUser.png';
 import { editUserSchema } from '@/libs/validations';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
@@ -27,9 +27,8 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
           <h1 className="mt-4 pt-5 text-center text-3xl">마이페이지</h1>
           <p>
             <Image
-              className="m-auto mb-[8px]  mt-[10px] block size-[110px] rounded-full "
+              className="m-auto mb-[8px]  mt-[10px] block size-[110px] rounded-full w-[100%] "
               src={noUser}
-              // src={session.user.image || noUser}
               width={300}
               height={25}
               alt={'user'}

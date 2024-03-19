@@ -89,7 +89,7 @@ const ProjectStage04: React.FC<ProjectStage04Props> = ({ stage }) => {
   }, [expectedStartDate, expectedEndDate, updateState]);
 
   return (
-    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10 2sm:px-8 2sm:pb-0">
       <ProjectHomeButtonWrap />
       <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'지출 가능 예산'} necessary={true} />

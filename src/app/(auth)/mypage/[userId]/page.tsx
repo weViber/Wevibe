@@ -33,12 +33,12 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
       className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6 2sm:px-2"
     >
       <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
-        <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-2 ">
+        <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <h1 className="pt-10 text-center text-3xl">회원정보 수정</h1>
           <>
             <button onClick={openModal}>
               <Image
-                className="m-auto mb-[8px]  mt-[10px] block size-[140px] rounded-full "
+                className="m-auto mb-[10px]  mt-[10px] block size-[170px] rounded-full border-2 box-border border-gray-100  "
                 src={session?.user.image!}
                 width={200}
                 height={200}

@@ -31,7 +31,7 @@ const ProjectStage03: React.FC<ProjectStage03Props> = ({ stage }) => {
     projectTitle.length === 0 || detailedTaskDescription.length === 0;
 
   return (
-    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+    <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10 2sm:px-8 2sm:pb-0">
       <ProjectHomeButtonWrap />
       <ProjectInput
         title={'프로젝트 제목'}

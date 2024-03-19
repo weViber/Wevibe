@@ -31,7 +31,7 @@ export const metadata: Metadata = {
       {
         url: 'https://opengraph.b-cdn.net/production/documents/bd8ec256-af61-4614-9905-6db9603bac09.png?token=sKtoM0ytMD287bX4PAqOuFWrXEmweidCVXkocs4o7Fc&height=310&width=751&expires=33246295156',
         width: 1200,
-        height: 630,
+        height: 600,
       },
     ],
   },
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
       {
         url: 'https://opengraph.b-cdn.net/production/documents/bd8ec256-af61-4614-9905-6db9603bac09.png?token=sKtoM0ytMD287bX4PAqOuFWrXEmweidCVXkocs4o7Fc&height=310&width=751&expires=33246295156',
         width: 1200,
-        height: 630,
+        height: 600,
       },
     ],
   },
@@ -58,7 +58,7 @@ export default async function RootLayout({
   const session = await getServerSession();
 
   return (
-    <html lang="en">
+    <html lang="ko">
       <body className={notoSans.className}>
         <SessionProvider session={session}>
           <Providers>
