@@ -1,4 +1,9 @@
 import { ReactElement } from 'react';
+import { GrPlan } from 'react-icons/gr';
+import { HiOutlineLightBulb } from 'react-icons/hi';
+import { IoDocumentTextOutline } from 'react-icons/io5';
+import { MdOutlineDesignServices } from 'react-icons/md';
+import { PiFolders } from 'react-icons/pi';
 import { TbDeviceImac } from 'react-icons/tb';
 
 interface CategoryOption {
@@ -20,11 +25,11 @@ export const categoryOptions: CategoryOption[] = [
     context: '개발',
   },
   {
-    icon: <TbDeviceImac />,
+    icon: <GrPlan />,
     context: '기획',
   },
   {
-    icon: <TbDeviceImac />,
+    icon: <MdOutlineDesignServices />,
     context: '디자인',
   },
 ];
@@ -70,15 +75,15 @@ export const progressClassificationOptions = [
 ];
 export const planningStatusOptions = [
   {
-    icon: <TbDeviceImac />,
+    icon: <HiOutlineLightBulb />,
     context: '아이디어만 있습니다.',
   },
   {
-    icon: <TbDeviceImac />,
+    icon: <PiFolders />,
     context: '필요한 내용들을 간단히 정리해두었습니다.',
   },
   {
-    icon: <TbDeviceImac />,
+    icon: <IoDocumentTextOutline />,
     context: '상세한 문서가 있습니다.',
   },
 ];
