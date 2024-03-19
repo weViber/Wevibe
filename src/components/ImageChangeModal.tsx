@@ -70,10 +70,17 @@ const ImageChangeModal = ({
           <Image
             className="max-h-[550px]  2sm:max-h-[440px]"
             src={previewUrl}
+            width={250}
+            height={300}
             alt="Preview"
           />
         ) : (
-          <Image src={session?.user.image!} alt="userImage" />
+          <Image
+            src={session?.user.image!}
+            width={250}
+            height={300}
+            alt="userImage"
+          />
         )}
       </div>
       <div className="m-4 flex justify-around py-4 ">
