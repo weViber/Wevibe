@@ -120,11 +120,15 @@ const Sidebar: FC = () => {
               </>
             ) : (
               <>
-                <Link href={`/mypage/${session?.user.userId}`}>
+                <a
+                  onClick={() =>
+                    headerMenuHandler(`mypage/${session?.user.userId}`)
+                  }
+                >
                   <li className="cursor-pointer p-2 hover:bg-slate-100">
                     {session.user.name} 님
                   </li>
-                </Link>
+                </a>
                 <li
                   className="cursor-pointer p-2 hover:bg-slate-100"
                   onClick={() => signOut()}
