@@ -14,6 +14,7 @@ import SelectInput from '../SelectInput';
 import SelectLine from '../SelectLine';
 import OptionSubtitle from './OptionSubtitle';
 import OptionTitle from './OptionTitle';
+import ProjectHomeButtonWrap from './ProjectHomeButtonWrap';
 import ProjectStageButtonWrap from './ProjectStageButtonWrap';
 
 interface ProjectStage02Props {
@@ -41,6 +42,7 @@ const ProjectStage02: React.FC<ProjectStage02Props> = ({ stage }) => {
 
   return (
     <div className="flex h-auto w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+      <ProjectHomeButtonWrap />
       <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'프로젝트 진행 분류'} necessary={true} />
         <div className="flex flex-col gap-4">

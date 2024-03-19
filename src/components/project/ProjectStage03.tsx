@@ -4,6 +4,7 @@ import ReactSelect from 'react-select/creatable';
 import ProjectInput from '../ProjectInput';
 import OptionSubtitle from './OptionSubtitle';
 import OptionTitle from './OptionTitle';
+import ProjectHomeButtonWrap from './ProjectHomeButtonWrap';
 import ProjectStageButtonWrap from './ProjectStageButtonWrap';
 interface ProjectStage03Props {
   stage: number;
@@ -31,6 +32,7 @@ const ProjectStage03: React.FC<ProjectStage03Props> = ({ stage }) => {
 
   return (
     <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+      <ProjectHomeButtonWrap />
       <ProjectInput
         title={'프로젝트 제목'}
         necessary={true}

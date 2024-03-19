@@ -15,6 +15,7 @@ import ProjectInput from '../ProjectInput';
 import SelectLine from '../SelectLine';
 import OptionSubtitle from './OptionSubtitle';
 import OptionTitle from './OptionTitle';
+import ProjectHomeButtonWrap from './ProjectHomeButtonWrap';
 import ProjectStageButtonWrap from './ProjectStageButtonWrap';
 
 interface ProjectStage06Props {
@@ -52,6 +53,7 @@ const ProjectStage06: React.FC<ProjectStage06Props> = ({ stage }) => {
 
   return (
     <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+      <ProjectHomeButtonWrap />
       {/* <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'지원자 모집 마감일'} necessary={true} />
         <OptionSubtitle

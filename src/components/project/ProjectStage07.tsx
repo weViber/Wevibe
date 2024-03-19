@@ -13,6 +13,7 @@ import Input from '../Input';
 import SelectLine from '../SelectLine';
 import OptionSubtitle from './OptionSubtitle';
 import OptionTitle from './OptionTitle';
+import ProjectHomeButtonWrap from './ProjectHomeButtonWrap';
 import ProjectStageButtonWrap from './ProjectStageButtonWrap';
 
 interface ProjectStage07Props {
@@ -50,6 +51,7 @@ const ProjectStage07: React.FC<ProjectStage07Props> = ({ userId, stage }) => {
 
   return (
     <div className="flex w-full flex-col gap-12 overflow-y-auto px-16 py-10">
+      <ProjectHomeButtonWrap />
       <div className="flex w-full flex-col gap-4">
         <OptionTitle title={'협업 인력 구성'} necessary={true} />
         <OptionSubtitle
