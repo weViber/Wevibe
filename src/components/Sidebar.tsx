@@ -3,15 +3,40 @@ import { cn } from '@/utils/style';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { useRouter } from 'next/navigation';
+import { FC, useEffect, useRef } from 'react';
 import { useSidebar } from './providers';
-
 
 const Sidebar: FC = () => {
   const { data: session } = useSession();
   const { isOpen, setIsOpen } = useSidebar();
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(e.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    6;
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
+
+  const headerMenuHandler = (menu: string) => {
+    router.push(`/${menu}`);
+    setIsOpen(false);
+  };
+
   return (
     <div
+      ref={sidebarRef}
       className={cn(
         'relative z-[10] m-auto w-full bg-[#eeeeee] lg:absolute',
         isOpen ? 'flex' : 'hidden'
@@ -46,21 +71,26 @@ const Sidebar: FC = () => {
           </p> */}
           <ul className="z-[30] m-auto block  w-full py-5  text-center">
             <li className=" relative cursor-pointer p-2 hover:bg-slate-100">
-              <a className="hover:bg-slate-100" href="/#Team_dev">
+              <a
+                className="hover:bg-slate-100"
+                onClick={() => headerMenuHandler('/#Team_dev')}
+              >
                 Team DEV
               </a>
             </li>
 
             <li className="cursor-pointer p-2 hover:bg-slate-100">
-              <a href="/#viber_X">viber X</a>
+              <a onClick={() => headerMenuHandler('/#viber_X')}>viber X</a>
             </li>
 
             <li className="cursor-pointer p-2 hover:bg-slate-100">
-              <a href="/#Ai_lawline">문서작성 AI 로라인</a>
+              <a onClick={() => headerMenuHandler('/#Ai_lawline')}>
+                문서작성 AI 로라인
+              </a>
             </li>
 
             <li className="cursor-pointer p-2 hover:bg-slate-100">
-              <a href="/#WORKS">Works</a>
+              <a onClick={() => headerMenuHandler('/#WORKS')}>Works</a>
             </li>
 
             <li className="cursor-pointer p-2 hover:bg-slate-100">
@@ -106,6 +136,7 @@ const Sidebar: FC = () => {
           </ol>
         </nav>
       </header>
+      {}
     </div>
   );
 };
