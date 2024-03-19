@@ -147,10 +147,10 @@ export const authOptions: NextAuthOptions = {
         token.userId = user.userId;
       }
       if (trigger === 'update') {
-        token.image = session.updateImage;
-        token.name = session.updateName;
-        token.company = session.updateCompany;
-        token.rank = session.updateRank;
+        if (session.updateImage) token.image = session.updateImage;
+        if (session.updateName) token.name = session.updateName;
+        if (session.updateCompany) token.company = session.updateCompany;
+        if (session.updateRank) token.rank = session.updateRank;
       }
       return token;
     },

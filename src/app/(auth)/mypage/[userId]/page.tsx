@@ -94,14 +94,14 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                 console.log(response);
 
                 if (response.status === 200) {
-                  toast.success('회원정보 수정 성공!');
                   sessionUpdate({
                     updateName: data.name,
                     upadeteCompany: data.company,
                     updateRank: data.rank,
                   });
+                  toast.success('회원정보 수정 성공!');
                   resetForm();
-                  // router.push('/');
+                  router.push('/');
                 }
               } catch (error: any) {
                 toast.error(
