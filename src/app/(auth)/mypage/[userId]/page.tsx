@@ -38,7 +38,7 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
           <>
             <button onClick={openModal}>
               <Image
-                className="m-auto mb-[10px]  mt-[10px] block size-[170px] rounded-full border-2 box-border border-gray-100  "
+                className="m-auto my-[10px]  box-border block size-[170px] rounded-full border-2 border-gray-100  "
                 src={session?.user.image!}
                 width={200}
                 height={200}
@@ -101,7 +101,7 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                   });
                   toast.success('회원정보 수정 성공!');
                   resetForm();
-                  router.push('/');
+                  router.refresh();
                 }
               } catch (error: any) {
                 toast.error(
