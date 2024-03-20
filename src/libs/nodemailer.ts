@@ -82,19 +82,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
         >
           하단 버튼을 누르시면 이메일 인증이 완료됩니다.
         </p>
-        <a
-          href="https://wevibe.kr/verifyemail/${id}"
-          style="
-            background: #404040;
-            text-decoration: none;
-            padding: 10px 24px;
-            font-size: 18px;
-            color: #fff;
-            font-weight: 400;
-            border-radius: 4px;
-          "
-          >이메일 인증하러 가기</a
-        >
+        <a href="https://www.wevibe.kr/verifyemail/${id}" style="background: #404040;text-decoration: none;padding: 10px 24px;font-size: 18px;color: #fff;font-weight: 400;border-radius: 4px;">이메일 인증하러 가기</a>
       </div>
     </div>
     `,
