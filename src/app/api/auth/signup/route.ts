@@ -43,7 +43,7 @@ export async function POST(request: Request) {
       },
     });
 
-    await verifyEmail({
+    verifyEmail({
       email: newUser.email,
       id: newUser.userId,
     });
