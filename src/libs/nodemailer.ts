@@ -25,7 +25,8 @@ if (
 let transporter = nodemailer.createTransport({
   service: process.env.SYSTEM_EMAIL_SERVICE,
   host: process.env.SYSTEM_EMAIL_HOST,
-  port: parseInt(process.env.SYSTEM_EMAIL_PORT, 10),
+  port: 587,
+  // port: parseInt(process.env.SYSTEM_EMAIL_PORT, 10),
   secure: false,
   auth: {
     user: process.env.SYSTEM_EMAIL_SENDER,
@@ -99,7 +100,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
   //     }
   //   });
   // });
-  return transporter.sendMail(mailData, (error, info) => {
+  return await transporter.sendMail(mailData, (error, info) => {
     if (error) {
       return console.log('Message Error :', error);
     }
