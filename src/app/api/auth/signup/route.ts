@@ -4,6 +4,9 @@ import bcrypt from 'bcryptjs';
 import { randomUUID } from 'crypto';
 import { NextResponse } from 'next/server';
 
+// export const runtime = 'edge';
+// export const dynamic = 'force-dynamic';
+
 export async function POST(request: Request) {
   try {
     const body = await request.json();

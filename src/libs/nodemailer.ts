@@ -25,7 +25,7 @@ if (
 let transporter = nodemailer.createTransport({
   service: process.env.SYSTEM_EMAIL_SERVICE,
   host: process.env.SYSTEM_EMAIL_HOST,
-  port: 587,
+  port: 465,
   // port: parseInt(process.env.SYSTEM_EMAIL_PORT, 10),
   secure: false,
   auth: {
@@ -36,9 +36,9 @@ let transporter = nodemailer.createTransport({
 
 transporter.verify(function (error, success) {
   if (error) {
-    console.log(error);
+    console.log('Mail Server Error : ', error);
   } else {
-    console.log("Server is ready to take our messages");
+    console.log('Server is ready to take our messages');
   }
 });
 
@@ -94,27 +94,26 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
     </div>
     `,
     };
-    await transporter.sendMail(mailData, (error, info) => {
-      if (error) {
-        return console.log('Message Error :', error);
-      }
-      console.log('Message Success :', info.messageId);
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (error, success) => {
+        if (error) {
+          console.error('인증 이메일 전송 실패', error);
+          reject(error);
+        } else {
+          console.log('인증 이메일 전송 성공');
+          resolve(success);
+        }
+      });
     });
+    // await transporter.sendMail(mailData, (error, info) => {
+    //   if (error) {
+    //     return console.log('Message Error :', error);
+    //   }
+    //   console.log('Message Success :', info.messageId);
+    // });
   } catch (error) {
     console.error(error);
   }
-
-  // await new Promise((resolve, reject) => {
-  //   transporter.sendMail(mailData, (error, success) => {
-  //     if (error) {
-  //       console.error('인증 이메일 전송 실패', error);
-  //       reject(error);
-  //     } else {
-  //       console.log('인증 이메일 전송 성공');
-  //       resolve(success);
-  //     }
-  //   });
-  // });
 }
 
 export async function forgotPassword({
