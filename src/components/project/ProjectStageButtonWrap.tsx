@@ -83,7 +83,7 @@ const ProjectStageButtonWrap: React.FC<StageButtonProps> = ({
               });
               if (response.status === 200) {
                 toast.success('프로젝트 의뢰가 완료되었습니다');
-                router.push('/');
+                router.push('/myproject');
                 resetPage();
                 resetStore();
               }
