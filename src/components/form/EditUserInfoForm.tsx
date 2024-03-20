@@ -1,6 +1,5 @@
 'use client';
 
-import noUser from '@/../nouserpublic/images/noUser.png';
 import { editUserSchema } from '@/libs/validations';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
@@ -28,7 +27,7 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
           <p>
             <Image
               className="m-auto mb-[8px]  mt-[10px] block size-[110px] w-[100%] rounded-full "
-              src={noUser}
+              src={'/images/noUser.png'}
               width={300}
               height={25}
               alt={'user'}

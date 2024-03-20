@@ -1,6 +1,5 @@
 'use client';
 
-import noUser from '@/../public/images/noUser.png';
 import { editUserSchema } from '@/libs/validations';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
@@ -16,14 +15,17 @@ const EditUserInfoForm = () => {
   console.log(session, status);
 
   return (
-    <div id="dev"  className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6 2sm:px-2">
-    <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
-      <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
+    <div
+      id="dev"
+      className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6 2sm:px-2"
+    >
+      <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
+        <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <h1 className="mt-4 pt-5 text-center text-3xl">회원탈퇴</h1>
           <p>
             <Image
               className="m-auto mb-[8px]  mt-[10px] block size-[110px] rounded-full "
-              src={noUser}
+              src={'/images/noUser.png'}
               // src={session.user.image || noUser}
               width={300}
               height={25}
