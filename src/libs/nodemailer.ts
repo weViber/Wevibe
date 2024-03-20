@@ -95,17 +95,18 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
     </div>
     `,
   };
-  await new Promise((resolve, reject) => {
-    transporter.sendMail(mailData, (error, success) => {
-      if (error) {
-        console.error('인증 이메일 전송 실패', error);
-        reject(error);
-      } else {
-        console.log('인증 이메일 전송 성공');
-        resolve(success);
-      }
-    });
-  });
+  // await new Promise((resolve, reject) => {
+  //   transporter.sendMail(mailData, (error, success) => {
+  //     if (error) {
+  //       console.error('인증 이메일 전송 실패', error);
+  //       reject(error);
+  //     } else {
+  //       console.log('인증 이메일 전송 성공');
+  //       resolve(success);
+  //     }
+  //   });
+  // });
+  return transporter.sendMail(mailData);
 }
 
 export async function forgotPassword({
@@ -176,15 +177,16 @@ export async function forgotPassword({
     `,
   };
 
-  await new Promise((resolve, reject) => {
-    transporter.sendMail(mailData, (error, success) => {
-      if (error) {
-        console.error('비밀번호 변경 이메일 전송 실패', error);
-        reject(error);
-      } else {
-        console.log('비밀번호 변경 이메일 전송 성공');
-        resolve(success);
-      }
-    });
-  });
+  // await new Promise((resolve, reject) => {
+  //   transporter.sendMail(mailData, (error, success) => {
+  //     if (error) {
+  //       console.error('비밀번호 변경 이메일 전송 실패', error);
+  //       reject(error);
+  //     } else {
+  //       console.log('비밀번호 변경 이메일 전송 성공');
+  //       resolve(success);
+  //     }
+  //   });
+  // });
+  return transporter.sendMail(mailData);
 }

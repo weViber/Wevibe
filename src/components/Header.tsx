@@ -9,7 +9,7 @@ import { useSidebar } from './providers';
 const Header: FC = () => {
   const { isOpen, setIsOpen } = useSidebar();
   const { data: session } = useSession();
-  console.log('session', session);
+  console.log('Header Session : ', session);
 
   return (
     <div className="w-full sm:m-auto   sm:w-[97%] 2sm:w-[95%] ">
@@ -70,7 +70,7 @@ const Header: FC = () => {
                     <>
                       <Image
                         className="mr-[10px] mt-[8px] block size-[25px] rounded-full bg-white"
-                        src={session.user.image}
+                        src={session.user.image || '/images/noUser.png'}
                         width={25}
                         height={25}
                         alt={'user'}

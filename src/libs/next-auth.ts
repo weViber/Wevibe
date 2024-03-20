@@ -74,7 +74,6 @@ export const authOptions: NextAuthOptions = {
       },
     }),
   ],
-  // adapter: PrismaAdapter(prisma),
   pages: {
     signIn: '/login',
     error: '/error',
@@ -89,6 +88,10 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user, profile, account }) {
+      console.log('signIn callback User :', user);
+      console.log('signIn callback Profile :', profile);
+      console.log('signIn callback Account :', account);
+
       try {
         if (account?.provider === 'kakao' || 'google' || 'naver') {
           const db_user = await prisma.user.findUnique({
@@ -128,6 +131,7 @@ export const authOptions: NextAuthOptions = {
           user.provider = db_user.provider;
           return true;
         }
+
         return true;
       } catch (error) {
         console.error('로그인 도중 에러가 발생했습니다: ' + error);
@@ -155,7 +159,7 @@ export const authOptions: NextAuthOptions = {
       return token;
     },
     async session({ session, token }) {
-      // console.log('session callback :', { session, token });
+      console.log('session callback :', { session, token });
       if (session.user) {
         session.user.id = token.id as number;
         session.user.userId = token.userId as string;
