@@ -61,7 +61,7 @@ const DeleteAccountForm = ({ params }: { params: { userId: string } }) => {
               <Form className="flex flex-col gap-2 ">
                 <p className="text-center ">
                   <Image
-                    className="m-auto mb-[8px]  mt-[10px] block  size-[170px] rounded-full border-2 box-border border-gray-100 "
+                    className="m-auto mb-[8px] mt-[10px] box-border block size-[170px] rounded-full border-2 border-gray-100 "
                     src={session?.user.image!}
                     width={200}
                     height={200}

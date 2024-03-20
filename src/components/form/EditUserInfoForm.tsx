@@ -20,14 +20,14 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
   return (
     <div
       id="dev"
-      className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6"
+      className=" top-0 mb-[-30px] mt-[-152px] h-auto w-full bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6"
     >
       <div className="m-auto mb-[60px] h-auto w-[60%] rounded-3xl bg-white  pb-8   shadow-lg drop-shadow-sm">
         <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 py-6 lg:px-4 ">
           <h1 className="mt-4 pt-5 text-center text-3xl">마이페이지</h1>
           <p>
             <Image
-              className="m-auto mb-[8px]  mt-[10px] block size-[110px] rounded-full w-[100%] "
+              className="m-auto mb-[8px]  mt-[10px] block size-[110px] w-[100%] rounded-full "
               src={noUser}
               width={300}
               height={25}

@@ -33,6 +33,9 @@ let transporter = nodemailer.createTransport({
 });
 
 export async function verifyEmail({ email, id }: VerifyEmailProps) {
+  console.log('verifyEmail email : ', email);
+  console.log('verifyEmail id : ', id);
+
   const mailData = {
     to: email,
     subject: `이메일 인증`,
@@ -95,6 +98,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
     </div>
     `,
   };
+  
   // await new Promise((resolve, reject) => {
   //   transporter.sendMail(mailData, (error, success) => {
   //     if (error) {

@@ -4,6 +4,8 @@ import SessionProvider from '@/components/SessionProvider';
 import Sidebar from '@/components/Sidebar';
 import Providers from '@/components/providers';
 import '@/styles/globals.css';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Metadata } from 'next';
 import { getServerSession } from 'next-auth';
 import { Noto_Sans_KR } from 'next/font/google';
@@ -81,6 +83,8 @@ export default async function RootLayout({
             </div>
           </Providers>
         </SessionProvider>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
