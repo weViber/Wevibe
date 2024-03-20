@@ -1,5 +1,16 @@
 import nodemailer from 'nodemailer';
 
+type VerifyEmailProps = {
+  email: string;
+  id: string;
+};
+
+type ForgotPasswordProps = {
+  email: string;
+  name: string;
+  token: string;
+};
+
 if (
   !process.env.SYSTEM_EMAIL_SERVICE ||
   !process.env.SYSTEM_EMAIL_PORT ||
@@ -9,16 +20,6 @@ if (
 ) {
   console.error('환경 변수가 설정되지 않았습니다.');
   process.exit(1);
-}
-
-interface VerifyEmailProps {
-  email: string;
-  id: string;
-}
-interface ForgotPasswordProps {
-  email: string;
-  name: string;
-  token: string;
 }
 
 let transporter = nodemailer.createTransport({
@@ -38,7 +39,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
 
   const mailData = {
     to: email,
-    subject: `이메일 인증`,
+    subject: `Wevibe - 이메일 인증`,
     from: process.env.SYSTEM_EMAIL_SENDER,
     html: `
     <div style="width: 100%; min-height: 1300px">
@@ -82,7 +83,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
           하단 버튼을 누르시면 이메일 인증이 완료됩니다.
         </p>
         <a
-          href="http://localhost:3000/verifyemail/${id}"
+          href="https://wevibe.kr/verifyemail/${id}"
           style="
             background: #404040;
             text-decoration: none;
@@ -98,7 +99,7 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
     </div>
     `,
   };
-  
+
   // await new Promise((resolve, reject) => {
   //   transporter.sendMail(mailData, (error, success) => {
   //     if (error) {
