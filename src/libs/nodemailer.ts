@@ -105,12 +105,6 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
         }
       });
     });
-    // await transporter.sendMail(mailData, (error, info) => {
-    //   if (error) {
-    //     return console.log('Message Error :', error);
-    //   }
-    //   console.log('Message Success :', info.messageId);
-    // });
   } catch (error) {
     console.error(error);
   }
@@ -121,79 +115,81 @@ export async function forgotPassword({
   email,
   name,
 }: ForgotPasswordProps) {
-  const mailData = {
-    to: email,
-    subject: `비밀번호 변경`,
-    from: process.env.SYSTEM_EMAIL_SENDER,
-    html: `
-    <div style="width: 100%; min-height: 1300px">
-      <div
-        style="
-          text-align: center;
-          width: 800px;
-          margin: 30px auto;
-          padding: 40px 80px;
-          border: 1px solid #ededed;
-          background: #fff;
-          box-sizing: border-box;
-        "
-      >
-        <a href="https://www.wevibe.kr" target="Wevibe">
-          <img
-            style="width: 150px"
-            src="https://lhbgoxzhnhiklwcgcdjh.supabase.co/storage/v1/object/public/profile-images/Logoimg3.png?t=2024-03-18T02%3A49%3A18.383Z"
-            alt="Wevibe"
-          />
-        </a>
-        <p
+  try {
+    const mailData = {
+      to: email,
+      subject: `비밀번호 변경`,
+      from: process.env.SYSTEM_EMAIL_SENDER,
+      html: `
+      <div style="width: 100%; min-height: 1300px">
+        <div
           style="
-            padding-top: 20px;
-            font-weight: 700;
-            font-size: 20px;
-            line-height: 1.5;
-            color: #222;
+            text-align: center;
+            width: 800px;
+            margin: 30px auto;
+            padding: 40px 80px;
+            border: 1px solid #ededed;
+            background: #fff;
+            box-sizing: border-box;
           "
         >
-          ${name}님, 비밀번호 변경을 완료해주세요.
-        </p>
-        <p
-          style="
-            font-size: 16px;
-            font-weight: 400;
-            line-height: 1.5;
-            margin-bottom: 40px;
-          "
-        >
-          하단 버튼을 누르시면 비밀번호 변경을 완료할 수 있습니다.
-        </p>
-        <a
-          href="https://www.wevibe.kr/password-reset/${token}"
-          style="
-            background: #404040;
-            text-decoration: none;
-            padding: 10px 24px;
-            font-size: 18px;
-            color: #fff;
-            font-weight: 400;
-            border-radius: 4px;
-          "
-          >비밀번호 변경하러 가기</a
-        >
+          <a href="https://www.wevibe.kr" target="Wevibe">
+            <img
+              style="width: 150px"
+              src="https://lhbgoxzhnhiklwcgcdjh.supabase.co/storage/v1/object/public/profile-images/Logoimg3.png?t=2024-03-18T02%3A49%3A18.383Z"
+              alt="Wevibe"
+            />
+          </a>
+          <p
+            style="
+              padding-top: 20px;
+              font-weight: 700;
+              font-size: 20px;
+              line-height: 1.5;
+              color: #222;
+            "
+          >
+            ${name}님, 비밀번호 변경을 완료해주세요.
+          </p>
+          <p
+            style="
+              font-size: 16px;
+              font-weight: 400;
+              line-height: 1.5;
+              margin-bottom: 40px;
+            "
+          >
+            하단 버튼을 누르시면 비밀번호 변경을 완료할 수 있습니다.
+          </p>
+          <a
+            href="https://www.wevibe.kr/password-reset/${token}"
+            style="
+              background: #404040;
+              text-decoration: none;
+              padding: 10px 24px;
+              font-size: 18px;
+              color: #fff;
+              font-weight: 400;
+              border-radius: 4px;
+            "
+            >비밀번호 변경하러 가기</a
+          >
+        </div>
       </div>
-    </div>
-    `,
-  };
-
-  // await new Promise((resolve, reject) => {
-  //   transporter.sendMail(mailData, (error, success) => {
-  //     if (error) {
-  //       console.error('비밀번호 변경 이메일 전송 실패', error);
-  //       reject(error);
-  //     } else {
-  //       console.log('비밀번호 변경 이메일 전송 성공');
-  //       resolve(success);
-  //     }
-  //   });
-  // });
-  return transporter.sendMail(mailData);
+      `,
+    };
+    await new Promise((resolve, reject) => {
+      transporter.sendMail(mailData, (error, success) => {
+        if (error) {
+          console.error('비밀번호 변경 이메일 전송 실패', error);
+          reject(error);
+        } else {
+          console.log('비밀번호 변경 이메일 전송 성공');
+          resolve(success);
+        }
+      });
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
