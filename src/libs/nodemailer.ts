@@ -25,9 +25,9 @@ if (
 let transporter = nodemailer.createTransport({
   service: process.env.SYSTEM_EMAIL_SERVICE,
   host: process.env.SYSTEM_EMAIL_HOST,
-  port: 587,
+  port: 465,
   // port: parseInt(process.env.SYSTEM_EMAIL_PORT, 10),
-  secure: false,
+  secure: true,
   auth: {
     user: process.env.SYSTEM_EMAIL_SENDER,
     pass: process.env.SYSTEM_EMAIL_APPPASS,
@@ -35,14 +35,12 @@ let transporter = nodemailer.createTransport({
 });
 
 export async function verifyEmail({ email, id }: VerifyEmailProps) {
-  console.log('verifyEmail email : ', email);
-  console.log('verifyEmail id : ', id);
-
-  const mailData = {
-    to: email,
-    subject: `Wevibe - 이메일 인증`,
-    from: process.env.SYSTEM_EMAIL_SENDER,
-    html: `
+  try {
+    const mailData = {
+      to: email,
+      subject: `Wevibe - 이메일 인증`,
+      from: process.env.SYSTEM_EMAIL_SENDER,
+      html: `
     <div style="width: 100%; min-height: 1300px">
       <div
         style="
@@ -87,7 +85,16 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
       </div>
     </div>
     `,
-  };
+    };
+    await transporter.sendMail(mailData, (error, info) => {
+      if (error) {
+        return console.log('Message Error :', error);
+      }
+      console.log('Message Success :', info.messageId);
+    });
+  } catch (error) {
+    console.error(error);
+  }
 
   // await new Promise((resolve, reject) => {
   //   transporter.sendMail(mailData, (error, success) => {
@@ -100,12 +107,6 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
   //     }
   //   });
   // });
-  return await transporter.sendMail(mailData, (error, info) => {
-    if (error) {
-      return console.log('Message Error :', error);
-    }
-    console.log('Message Success :', info.messageId);
-  });
 }
 
 export async function forgotPassword({
