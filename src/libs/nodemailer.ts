@@ -26,7 +26,7 @@ let transporter = nodemailer.createTransport({
   service: process.env.SYSTEM_EMAIL_SERVICE,
   host: process.env.SYSTEM_EMAIL_HOST,
   port: parseInt(process.env.SYSTEM_EMAIL_PORT, 10),
-  secure: true,
+  secure: false,
   auth: {
     user: process.env.SYSTEM_EMAIL_SENDER,
     pass: process.env.SYSTEM_EMAIL_APPPASS,
@@ -99,7 +99,12 @@ export async function verifyEmail({ email, id }: VerifyEmailProps) {
   //     }
   //   });
   // });
-  return transporter.sendMail(mailData);
+  return transporter.sendMail(mailData, (error, info) => {
+    if (error) {
+      return console.log('Message Error :', error);
+    }
+    console.log('Message Success :', info.messageId);
+  });
 }
 
 export async function forgotPassword({
