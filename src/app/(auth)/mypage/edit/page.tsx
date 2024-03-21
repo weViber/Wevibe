@@ -12,8 +12,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
+interface editUserProps {
+  params: {
+    userId: string;
+  };
+}
 
-const EditUserInfoForm = (userId: string) => {
+const EditUserInfoForm = ({ params }: editUserProps) => {
   const router = useRouter();
   const { data: session, status, update: sessionUpdate } = useSession();
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -73,7 +78,7 @@ const EditUserInfoForm = (userId: string) => {
             </button>
           </div>
           <ImageChangeModal
-            userId={userId}
+            userId={params.userId}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
           />
@@ -102,8 +107,8 @@ const EditUserInfoForm = (userId: string) => {
                     company: data.company,
                     updateRank: data.rank,
                   });
-                  toast.success('회원정보 수정 성공!');
                   router.push(`/mypage`);
+                  toast.success('회원정보 수정 성공!');
                 }
               } catch (error: any) {
                 toast.error(

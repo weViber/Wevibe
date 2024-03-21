@@ -74,7 +74,7 @@ const ImageChangeModal = ({
           image: filePath,
         });
         if (response.status === 200) {
-          router.push(`/mypage`);
+          router.push(`/mypage/edit`);
         }
       }
     }
