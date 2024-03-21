@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       },
     });
 
-    forgotPassword({
+    await forgotPassword({
       email: user.email,
       name: user.name,
       token: token.token,
