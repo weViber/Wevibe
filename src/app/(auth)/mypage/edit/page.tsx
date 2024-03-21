@@ -10,15 +10,15 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 
-const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
+const EditUserInfoForm = (userId: string) => {
   const router = useRouter();
-  const { userId } = params;
-  const { data: session, update: sessionUpdate } = useSession();
+  const { data: session, status, update: sessionUpdate } = useSession();
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  console.log('Edit Sessoin', session);
   const openModal = () => {
     setModalIsOpen(true);
   };
@@ -26,8 +26,31 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
   const closeModal = () => {
     setModalIsOpen(false);
   };
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  return (
+
+  // 세션이 로딩 될 때까지 로딩처리
+  const [profile, setProfile] = useState<any>(null);
+
+  const fetchUserProfile = async (): Promise<void> => {
+    try {
+      const response = await axios.get(`/api/auth/userInfo`);
+
+      if (!response) {
+        throw new Error('Failed to fetch data');
+      }
+
+      const fetchData = await response.data;
+      setProfile(fetchData);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+  useEffect(() => {
+    fetchUserProfile();
+  }, [session]);
+
+  return profile === null ? (
+    'loading'
+  ) : (
     <div
       id="dev"
       className=" top-0   mb-[-30px] mt-[-152px]  h-auto w-full  bg-[url('/img/h_bg.png')] bg-cover bg-center bg-no-repeat py-12 lg:px-6 2sm:px-2"
@@ -35,73 +58,52 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
       <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
         <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <h1 className="pt-10 text-center text-3xl">회원정보 수정</h1>
-          <>
-            <button onClick={openModal}>
-              <Image
-                className="m-auto my-[10px]  box-border block size-[170px] rounded-full border-2 border-gray-100  "
-                src={session?.user.image!}
-                width={200}
-                height={200}
-                alt={'user'}
-              />
-              <span className="text-lg text-[#92a4ec]   underline underline-offset-4">
+          <div>
+            <Image
+              className="m-auto my-[10px]  box-border block size-[170px] rounded-full border-2 border-gray-100  "
+              src={profile.image || '/images/noUser.png'}
+              width={200}
+              height={200}
+              alt={'user'}
+            />
+            <button onClick={openModal} className="mx-auto my-0 block">
+              <span className=" text-lg text-[#92a4ec]  underline underline-offset-4">
                 사진변경
               </span>
             </button>
-            <ImageChangeModal
-              userId={userId}
-              isOpen={modalIsOpen}
-              onRequestClose={closeModal}
-            />
-          </>
-
-          <Link href="/myproject">
-            <Button
-              type="submit"
-              className="mt-5 flex justify-center text-center font-bold text-[#eee] "
-            >
-              {/* <Image className=' mt-[3px] mr-3 ] '
-                src="/Icon/Icon-bluekey.png"
-                alt="Next.js Logo"
-                width={18}
-                height={5}
-              /> */}
-              내 프로젝트 목록
-            </Button>
-          </Link>
+          </div>
+          <ImageChangeModal
+            userId={userId}
+            isOpen={modalIsOpen}
+            onRequestClose={closeModal}
+          />
 
           <Formik
             initialValues={{
-              email: session?.user.email,
-              name: session?.user.name,
-              company: session?.user.company,
-              rank: session?.user.rank,
+              name: profile.name,
+              company: profile.company,
+              rank: profile.rank,
             }}
             validationSchema={editUserSchema}
-            onSubmit={async (data, { setSubmitting, resetForm }) => {
+            onSubmit={async (data, { setSubmitting }) => {
               console.log(data);
               setSubmitting(true);
               try {
-                const response = await axios.post(
-                  `/api/auth/editUserInfo/${userId}`,
-                  {
-                    email: data.email,
-                    name: data.name,
-                    company: data.company,
-                    rank: data.rank,
-                  }
-                );
+                const response = await axios.post(`/api/auth/editUserInfo`, {
+                  name: data.name,
+                  company: data.company,
+                  rank: data.rank,
+                });
                 console.log(response);
 
                 if (response.status === 200) {
                   sessionUpdate({
-                    updateName: data.name,
-                    upadeteCompany: data.company,
+                    name: data.name,
+                    company: data.company,
                     updateRank: data.rank,
                   });
                   toast.success('회원정보 수정 성공!');
-                  resetForm();
-                  router.refresh();
+                  router.push(`/mypage`);
                 }
               } catch (error: any) {
                 toast.error(
@@ -120,8 +122,8 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                     label="사용자명(이름)"
                     name={'name'}
                     type={'text'}
-                    touched={touched}
-                    errors={errors}
+                    touched={touched as { [key: string]: boolean }}
+                    errors={errors as { [key: string]: string }}
                   />
                   <Image
                     className=" absolute left-[17px] top-[66px]"
@@ -134,28 +136,11 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
 
                 <div className=" relative -my-3">
                   <InputFormik
-                    label="이메일"
-                    name={'email'}
-                    type={'email'}
-                    touched={touched}
-                    errors={errors}
-                  />
-                  <Image
-                    className=" absolute left-[14.5px] top-[64px]"
-                    src="/Icon/Icon-email.png"
-                    alt="Next.js Logo"
-                    width={16}
-                    height={5}
-                  />
-                </div>
-
-                <div className=" relative -my-3">
-                  <InputFormik
                     label="회사"
                     name={'company'}
                     type={'text'}
-                    touched={touched}
-                    errors={errors}
+                    touched={touched as { [key: string]: boolean }}
+                    errors={errors as { [key: string]: string }}
                   />
                   <Image
                     className=" absolute left-[14px] top-[61px]"
@@ -171,8 +156,8 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                     label="직급"
                     name={'rank'}
                     type={'text'}
-                    touched={touched}
-                    errors={errors}
+                    touched={touched as { [key: string]: boolean }}
+                    errors={errors as { [key: string]: string }}
                   />
                   <Image
                     className=" absolute left-[17px] top-[66px]"
@@ -184,7 +169,7 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                 </div>
 
                 <Link
-                  className="mt-2 font-semibold underline underline-offset-4 "
+                  className="mt-6 font-semibold underline underline-offset-4 "
                   href="/forgot-password"
                 >
                   비밀번호 변경
@@ -195,7 +180,7 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                   disabled={isSubmitting}
                   className="my-5 flex justify-center bg-[#F2F4FF] text-center font-bold text-[#5B74E1]"
                 >
-                  정보수정
+                  저장
                 </Button>
 
                 <Button className="-my-4 mb-3 flex justify-center bg-[#F2F4FF] font-bold  text-[#8D8D8D]">
@@ -203,13 +188,13 @@ const EditUserInfoForm = ({ params }: { params: { userId: string } }) => {
                     className="flex"
                     href={`/delete-account/${session?.user.userId}`}
                   >
-                    <Image
+                    {/* <Image
                       className="mr-3 mt-[3.2px] "
                       src="/Icon/Icon-out.png"
                       alt="Next.js Logo"
                       width={17.5}
                       height={5}
-                    />
+                    /> */}
                     회원 탈퇴
                   </Link>
                 </Button>

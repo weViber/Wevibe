@@ -88,10 +88,6 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async signIn({ user, profile, account }) {
-      console.log('signIn callback User :', user);
-      console.log('signIn callback Profile :', profile);
-      console.log('signIn callback Account :', account);
-
       try {
         if (account?.provider === 'kakao' || 'google' || 'naver') {
           const db_user = await prisma.user.findUnique({
@@ -131,7 +127,6 @@ export const authOptions: NextAuthOptions = {
           user.provider = db_user.provider;
           return true;
         }
-
         return true;
       } catch (error) {
         console.error('로그인 도중 에러가 발생했습니다: ' + error);
@@ -151,15 +146,14 @@ export const authOptions: NextAuthOptions = {
         token.userId = user.userId;
       }
       if (trigger === 'update') {
-        if (session.updateImage) token.image = session.updateImage;
-        if (session.updateName) token.name = session.updateName;
-        if (session.updateCompany) token.company = session.updateCompany;
-        if (session.updateRank) token.rank = session.updateRank;
+        token.image = session.image;
+        token.name = session.name;
+        token.company = session.company;
+        token.rank = session.rank;
       }
       return token;
     },
     async session({ session, token }) {
-      console.log('session callback :', { session, token });
       if (session.user) {
         session.user.id = token.id as number;
         session.user.userId = token.userId as string;

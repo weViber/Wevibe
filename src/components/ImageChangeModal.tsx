@@ -2,7 +2,8 @@ import { supabaseClient } from '@/utils/supabase';
 import axios from 'axios';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -23,6 +24,7 @@ const ImageChangeModal = ({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const { data: session, update: sessionUpdate } = useSession();
+  const router = useRouter();
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files?.length) {
@@ -30,6 +32,25 @@ const ImageChangeModal = ({
       setPreviewUrl(URL.createObjectURL(event.target.files[0]));
     }
   };
+
+  // 세션이 로딩 될 때까지 로딩처리
+  const [profile, setProfile] = useState<any>(null);
+  const fetchUserProfile = async (): Promise<void> => {
+    try {
+      const response = await axios.get(`/api/auth/userInfo`);
+      if (!response) {
+        throw new Error('Failed to fetch data');
+      }
+      const fetchData = await response.data;
+      setProfile(fetchData);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, [session]);
 
   const handleUploadClick = async () => {
     if (selectedFile) {
@@ -48,21 +69,26 @@ const ImageChangeModal = ({
       } else {
         console.log('Image uploaded successfully');
         // MySQL에 이미지 경로 저장
-        await axios.post(`/api/auth/change-image/${userId}`, {
-          userId,
+        const response = await axios.post(`/api/auth/change-image`, {
+          userId: session?.user.userId,
           image: filePath,
         });
+        if (response.status === 200) {
+          router.push(`/mypage`);
+        }
       }
     }
   };
-  return (
+  return profile === null ? (
+    'loading...'
+  ) : (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       contentLabel="Image Change Modal"
       ariaHideApp={false}
       className={
-        ' relative top-24  mx-auto mt-6 w-6/12  flex-col items-center justify-center rounded-xl border border-slate-300 bg-white lg:w-[70%] 2sm:w-[95%] '
+        ' relative top-40 mx-auto mt-6 w-6/12  flex-col items-center justify-center rounded-xl border border-slate-300 bg-white lg:w-[70%] 2sm:w-[95%] '
       }
     >
       <div className=" mx-auto mb-4 mt-10 flex w-6/12  items-center justify-center sm:w-9/12 lg:w-8/12">
@@ -76,7 +102,7 @@ const ImageChangeModal = ({
           />
         ) : (
           <Image
-            src={session?.user.image!}
+            src={profile.image!}
             width={250}
             height={300}
             alt="userImage"

@@ -3,19 +3,15 @@ import prisma from '@/libs/prisma';
 import { getServerSession } from 'next-auth';
 import { NextResponse } from 'next/server';
 
-export async function POST(
-  request: Request,
-  { params }: { params: { userId: string } }
-) {
+export async function POST(request: Request) {
   try {
     const session = await getServerSession(authOptions);
     const body = await request.json();
-    const { userId } = params;
     const { image } = body;
 
     const user = await prisma.user.findUnique({
       where: {
-        userId,
+        userId: session?.user.userId,
       },
     });
 
@@ -36,7 +32,7 @@ export async function POST(
 
     const updateImage = await prisma.user.update({
       where: {
-        userId,
+        userId: session?.user.userId,
       },
       data: {
         image,

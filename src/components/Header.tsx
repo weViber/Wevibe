@@ -1,15 +1,34 @@
 'use client';
 import { cn } from '@/utils/style';
+import axios from 'axios';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useSidebar } from './providers';
 
 const Header: FC = () => {
   const { isOpen, setIsOpen } = useSidebar();
   const { data: session } = useSession();
-  console.log('Header Session : ', session);
+
+  // 세션이 로딩 될 때까지 로딩처리
+  const [profile, setProfile] = useState<any>(null);
+  const fetchUserProfile = async (): Promise<void> => {
+    try {
+      const response = await axios.get(`/api/auth/userInfo`);
+      if (!response) {
+        throw new Error('Failed to fetch data');
+      }
+      const fetchData = await response.data;
+      setProfile(fetchData);
+    } catch (error: any) {
+      console.error(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, [session]);
 
   return (
     <div className="w-full sm:m-auto   sm:w-[97%] 2sm:w-[95%] ">
@@ -66,18 +85,35 @@ const Header: FC = () => {
                       <li>/</li>
                       <Link href="/signup">회원가입</Link>
                     </>
+                  ) : profile === null ? (
+                    <>
+                      <Link href={`/mypage`}>
+                        <li>...님</li>
+                      </Link>
+                      <p className="mx-2">/</p>
+                      <button
+                        className="mb-2"
+                        onClick={() => {
+                          signOut({
+                            callbackUrl: `/login`,
+                          });
+                        }}
+                      >
+                        로그아웃
+                      </button>
+                    </>
                   ) : (
                     <>
                       <Image
                         className="mr-[10px] mt-[8px] block size-[25px] rounded-full bg-white"
-                        src={session.user.image || '/images/noUser.png'}
+                        src={profile.image!}
                         width={25}
                         height={25}
                         alt={'user'}
                       />
 
-                      <Link href={`/mypage/${session?.user.userId}`}>
-                        <li>{session?.user.name} 님</li>
+                      <Link href={`/mypage`}>
+                        <li>{profile.name} 님</li>
                       </Link>
                       <p className="mx-2">/</p>
                       <button
