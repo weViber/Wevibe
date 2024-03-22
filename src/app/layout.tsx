@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     siteName: '위바이브 주식회사',
     images: [
       {
-        url: 'https://opengraph.b-cdn.net/production/documents/b1c54d24-f036-4335-8168-04741a138779.png?token=xQKet2QmBLtWThR9DPXoJwjP7312JP4ADmUuTyT2Z8U&height=600&width=1200&expires=33247098865',
+        url: 'https://opengraph.b-cdn.net/production/documents/98605498-a474-4126-bc4e-81679aee4c22.png?token=agUvCeS0pvBpuez-JV_vNhuP-HYA8PeNwv0b0k1b1jw&height=600&width=1200&expires=33247100316',
         width: 1200,
         height: 600,
       },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
       '위바이브는 유저의 경험 데이터가 차이를 만들어낸다고 믿습니다. 위바이브는 AI 기반으로 지속 발전 가능한 성장 모델을 발굴하여 새로운 경험과 가능성을 모색합니다.',
     images: [
       {
-        url: 'https://opengraph.b-cdn.net/production/documents/b1c54d24-f036-4335-8168-04741a138779.png?token=xQKet2QmBLtWThR9DPXoJwjP7312JP4ADmUuTyT2Z8U&height=600&width=1200&expires=33247098865',
+        url: 'https://opengraph.b-cdn.net/production/documents/98605498-a474-4126-bc4e-81679aee4c22.png?token=agUvCeS0pvBpuez-JV_vNhuP-HYA8PeNwv0b0k1b1jw&height=600&width=1200&expires=33247100316',
         width: 1200,
         height: 600,
       },
