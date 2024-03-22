@@ -12,7 +12,11 @@ import prisma from './prisma';
 if (
   !process.env.KAKAO_CLIENT_ID ||
   !process.env.KAKAO_CLIENT_SECRET ||
-  !process.env.NEXTAUTH_SECRET
+  !process.env.NEXTAUTH_SECRET ||
+  !process.env.GOOGLE_CLIENT_ID ||
+  !process.env.GOOGLE_CLIENT_SECRET! ||
+  !process.env.NAVER_CLIENT_ID ||
+  !process.env.NAVER_CLIENT_SECRET
 ) {
   console.error('환경 변수가 설정되지 않았습니다.');
   process.exit(1);
