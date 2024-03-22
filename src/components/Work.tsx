@@ -73,54 +73,54 @@ const Work = () => {
            </Link>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-        <Link target='_blank' href=''>
+        {/* <Link target='_blank' href=''> */}
           <Image
             src="/img/works8.png"
             width={700}
             height={100}
             alt="우리동네카센터 제작"
           />
-             </Link>
+             {/* </Link> */}
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-        <Link target='_blank' href=''>
+        
           <Image
             src="/img/works7.png"
             width={700}
             height={100}
             alt="디블럭,우리동네카센터 사이트제작"
           />
-             </Link>
+         
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-        <Link target='_blank' href=''>
+       
           <Image
             src="/img/works6.png"
             width={700}
             height={100}
             alt="법무법인정곡 사이트제작"
           />
-             </Link>
+        
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-        <Link target='_blank' href=''>
+       
           <Image
             src="/img/works4.png"
             width={700}
             height={100}
             alt="디블럭필터 디자인"
           />
-             </Link>
+         
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-        <Link target='_blank' href=''>
+      
           <Image
             src="/img/works9.png"
             width={700}
             height={100}
             alt="WestlokeAmps"
           />
-             </Link>
+          
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
         <Link target='_blank' href='http://www.tk-trade.co.kr'>
