@@ -12,6 +12,9 @@ import { Noto_Sans_KR } from 'next/font/google';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../components/Footer';
+import ScrollToTop from '../components/ScrollToTop';
+
+
 
 const notoSans = Noto_Sans_KR({ subsets: ['latin'], weight: '400' });
 
@@ -63,10 +66,12 @@ export default async function RootLayout({
   return (
     <html lang="ko">
       <body className={notoSans.className}>
+      
         <SessionProvider session={session}>
           <Providers>
             <div className="flex flex-col">
               <main className="flex flex-1 flex-col overflow-y-auto">
+                <ScrollToTop />
                 <ProjectAlertBar />
                 <Sidebar />
                 <Header />
