@@ -113,14 +113,14 @@ const Work = () => {
          
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
-      
+        <Link target='_blank' href='https://westloke.com/'>
           <Image
             src="/img/works9.png"
             width={700}
             height={100}
             alt="WestlokeAmps"
           />
-          
+               </Link>
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
         <Link target='_blank' href='http://www.tk-trade.co.kr'>
@@ -159,6 +159,26 @@ const Work = () => {
             width={700}
             height={100}
             alt="lynpluscare"
+          />
+             </Link>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide">
+        <Link target='_blank' href='https://ic-korea.com/'>
+          <Image
+            src="/img/icKorea.png"
+            width={700}
+            height={100}
+            alt="icKorea"
+          />
+             </Link>
+        </SwiperSlide>
+        <SwiperSlide className="swiper-slide">
+        <Link target='_blank' href='http://lawfirmjk.co.kr/'>
+          <Image
+            src="/img/JungGok.png"
+            width={700}
+            height={100}
+            alt="JungGok"
           />
              </Link>
         </SwiperSlide>
