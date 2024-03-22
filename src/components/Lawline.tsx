@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Lawline = () => {
   return (
@@ -8,6 +9,7 @@ const Lawline = () => {
         className="mt-16 bg-[url('/img/lawline_bg.png')]  bg-cover bg-fixed  bg-center bg-no-repeat"
       >
         <div className="m-auto max-w-[1000px] lg:px-6">
+        <Link target='_blank' href='https://lawline.co.kr'>
           <p className="pb-10 pt-16">
             <Image
               src="/img/lawline_logo.png"
@@ -16,14 +18,17 @@ const Lawline = () => {
               height={50}
             />
           </p>
+         
           <h3 className="text-4xl font-semibold ">AI 문서작성 도우미 로라인</h3>
           <p className="mt-3 pb-16 text-xl">
             작성하기 힘든 각종 서류,문서 양식을 자동으로 채우고 필요한 서류를
             찾아서 준비해주는 AI기반 서비스
           </p>
+          </Link>
         </div>
       </div>
       <div className="m-auto mt-16 max-w-[1000px]">
+      <Link target='_blank' href='https://lawline.co.kr'>
         <p className="px-6">
           {' '}
           <Image
@@ -75,6 +80,7 @@ const Lawline = () => {
             </p>
           </li>
         </ul>
+        </Link>
       </div>
     </>
   );
