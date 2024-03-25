@@ -64,9 +64,9 @@ const UserInfoForm = () => {
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
               <div className="pt-5 text-base font-bold text-black">
-                사용자명(별명)
+                사용자명(닉네임)
               </div>
-              <div className="block w-full rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
+              <div className="block w-full rounded-lg h-[46px] border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.name}
               </div>
             </div>
@@ -82,7 +82,7 @@ const UserInfoForm = () => {
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
               <div className="pt-5 text-base font-bold text-black">이메일</div>
-              <div className="block w-full rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
+              <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.email}
               </div>
             </div>
@@ -98,7 +98,7 @@ const UserInfoForm = () => {
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
               <div className="pt-5 text-base font-bold text-black">회사</div>
-              <div className="block w-full rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
+              <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.company}
               </div>
             </div>
@@ -114,7 +114,7 @@ const UserInfoForm = () => {
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
               <div className="pt-5 text-base font-bold text-black">직급</div>
-              <div className="block w-full rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
+              <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.rank}
               </div>
             </div>
