@@ -131,7 +131,7 @@ const Header: FC = () => {
                     </>
                   )}
                 </ol>
-                <button className="z-10 hidden opacity-80 lg:block ">
+                <button className="z-10 hidden opacity-80 lg:block 2sm:opacity-100 ">
                   <Image
                     id="Sidibar_boutton"
                     className="top-[32px]  mb-2 box-border  hidden  h-12 w-[50px]  cursor-pointer rounded-md border-2 border-black bg-white p-2  lg:mr-0 lg:block   "

@@ -50,10 +50,11 @@ const Sidebar: FC = () => {
   };
 
   return (
+    <div className='relative w-[97%] mx-auto rounded-2xl'>
     <div
       ref={sidebarRef}
       className={cn(
-        'relative z-[10] m-auto w-full  border-2 border-slate-50 bg-[#ffffff] opacity-99 lg:absolute shadow-lg ' ,
+        'relative z-[10] w-[100%]  border-2 rounded-b-2xl border-slate-50 bg-[#fcfcfc] opacity-100 lg:absolute shadow-xl ' ,
         isOpen ? 'flex' : 'hidden'
       )}
     >
@@ -173,6 +174,7 @@ const Sidebar: FC = () => {
         </nav>
       </header>
       {}
+    </div>
     </div>
   );
 };
