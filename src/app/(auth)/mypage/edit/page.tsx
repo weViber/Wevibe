@@ -188,11 +188,11 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
                   저장
                 </Button>
 
-                <Button className="-my-4 mb-3 flex justify-center bg-[#F2F4FF] font-bold  text-[#8D8D8D]">
                   <Link
                     className="flex"
                     href={`/delete-account/${session?.user.userId}`}
                   >
+                <Button className="-my-4 mb-3 flex justify-center bg-[#F2F4FF] font-bold  text-[#8D8D8D]">
                     {/* <Image
                       className="mr-3 mt-[3.2px] "
                       src="/Icon/Icon-out.png"
@@ -201,8 +201,8 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
                       height={5}
                     /> */}
                     회원 탈퇴
-                  </Link>
                 </Button>
+                  </Link>
               </Form>
             )}
           </Formik>

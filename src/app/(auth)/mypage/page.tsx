@@ -62,8 +62,8 @@ const UserInfoForm = () => {
             </Button>
           </Link>
           <div className=" relative -my-3">
-            <div className="flex flex-col gap-1">
-              <div className="pt-5 text-base font-bold text-black">
+            <div className="mt-3 flex flex-col gap-1">
+              <div className="  text-base font-bold text-black">
                 사용자명(닉네임)
               </div>
               <div className="block w-full rounded-lg h-[46px] border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
@@ -71,7 +71,7 @@ const UserInfoForm = () => {
               </div>
             </div>
             <Image
-              className=" absolute left-[17px] top-[66px]"
+              className=" absolute left-[17px] top-[58px]"
               src="/Icon/Icon-circle.png"
               alt="Next.js Logo"
               width={10}
@@ -81,13 +81,13 @@ const UserInfoForm = () => {
 
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
-              <div className="pt-5 text-base font-bold text-black">이메일</div>
+              <div className="  text-base font-bold text-black">이메일</div>
               <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.email}
               </div>
             </div>
             <Image
-              className=" absolute left-[14.5px] top-[64px]"
+              className=" absolute left-[14.5px] top-[44px]"
               src="/Icon/Icon-email.png"
               alt="Next.js Logo"
               width={16}
@@ -97,13 +97,13 @@ const UserInfoForm = () => {
 
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
-              <div className="pt-5 text-base font-bold text-black">회사</div>
+              <div className="  text-base font-bold text-black">회사</div>
               <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.company}
               </div>
             </div>
             <Image
-              className=" absolute left-[14px] top-[61px]"
+              className=" absolute left-[14px] top-[42px]"
               src="/Icon/Icon-building.png"
               alt="Next.js Logo"
               width={16}
@@ -113,13 +113,13 @@ const UserInfoForm = () => {
 
           <div className=" relative -my-3">
             <div className="flex flex-col gap-1">
-              <div className="pt-5 text-base font-bold text-black">직급</div>
+              <div className="  text-base font-bold text-black">직급</div>
               <div className="block w-full h-[46px] rounded-lg border border-[#EAEAEA] bg-white px-5 py-3 indent-[20px] text-sm text-gray-900 focus:border-black focus:ring-black">
                 {profile.rank}
               </div>
             </div>
             <Image
-              className=" absolute left-[17px] top-[66px]"
+              className=" absolute left-[17px] top-[46px]"
               src="/Icon/Icon-circle.png"
               alt="Next.js Logo"
               width={10}
@@ -129,13 +129,15 @@ const UserInfoForm = () => {
 
           <Link href={`/mypage/edit`}>
             <Button className="my-5 flex justify-center bg-[#F2F4FF] text-center font-bold text-[#5B74E1]">
-              회원 정보 수정
+              회원 정보 수정하기 <span className='relative ml-2' >  &#10004; </span>
             </Button>
           </Link>
 
-          <Button className="-my-10 mb-3 flex justify-center bg-[#F2F4FF] font-bold  text-[#8D8D8D]">
+          
+
             <Link className="flex" href={`/`}>
-              {/* <Image
+          <Button className="-my-10 mb-0 flex justify-center bg-[#F2F4FF] font-bold  text-[#8D8D8D]">
+               {/* <Image
                 className="mr-3 mt-[3.2px] "
                 src="/Icon/Icon-out.png"
                 alt="Next.js Logo"
@@ -143,8 +145,8 @@ const UserInfoForm = () => {
                 height={5}
               /> */}
               홈으로
-            </Link>
           </Button>
+            </Link>
         </div>
       </div>
     </div>
