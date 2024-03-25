@@ -111,11 +111,11 @@ export const detailedPlanningStatusOptions = [
 ];
 export const preMeetingMethodOptions = [
   '온라인 (카카오톡, 화상미팅 등)',
-  '온프라인',
+  '오프라인',
 ];
 export const meetingMethodOptions = [
   '온라인 (카카오톡, 화상미팅 등)',
-  '온프라인',
+  '오프라인',
 ];
 export const meetingFrequencyOptions = ['주 2회', '주 1회', '필요시 요청'];
 

@@ -88,7 +88,8 @@ const Header: FC = () => {
                   ) : profile === null ? (
                     <>
                       <Link href={`/mypage`}>
-                        <li>...님</li>
+                        <li>회원정보</li>
+                        {/* <li>...님</li> */}
                       </Link>
                       <p className="mx-2">/</p>
                       <button
@@ -113,7 +114,8 @@ const Header: FC = () => {
                       />
 
                       <Link href={`/mypage`}>
-                        <li>{profile.name} 님</li>
+                        <li>회원정보</li>
+                        {/* <li>{profile.name} 님</li> */}
                       </Link>
                       <p className="mx-2">/</p>
                       <button

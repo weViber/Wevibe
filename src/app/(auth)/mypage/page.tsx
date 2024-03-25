@@ -56,7 +56,7 @@ const UserInfoForm = () => {
           <Link href="/myproject">
             <Button
               type="submit"
-              className="mt-5 flex justify-center text-center font-bold text-[#eee] "
+              className=" flex justify-center text-center font-bold text-[#eee] "
             >
               내 프로젝트 목록
             </Button>

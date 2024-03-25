@@ -1,10 +1,11 @@
 'use client';
 import { cn } from '@/utils/style';
+import axios from 'axios';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { useSidebar } from './providers';
 
 const Sidebar: FC = () => {
@@ -12,6 +13,7 @@ const Sidebar: FC = () => {
   const { isOpen, setIsOpen } = useSidebar();
   const sidebarRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const [profile, setProfile] = useState<any>(null);
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
@@ -32,6 +34,19 @@ const Sidebar: FC = () => {
   const headerMenuHandler = (menu: string) => {
     router.push(`/${menu}`);
     setIsOpen(false);
+  };
+
+  const fetchUserProfile = async (): Promise<void> => {
+    try {
+      const response = await axios.get(`/api/auth/userInfo`);
+      if (!response) {
+        throw new Error('Failed to fetch data');
+      }
+      const fetchData = await response.data;
+      setProfile(fetchData);
+    } catch (error: any) {
+      console.error(error.message);
+    }
   };
 
   return (
@@ -93,9 +108,10 @@ const Sidebar: FC = () => {
               <a onClick={() => headerMenuHandler('/#WORKS')}>Works</a>
             </li>
 
-            <li className="cursor-pointer p-2 hover:bg-slate-100">
-              <Link className="cursor-pointer" href={'/project'}>
+            <li className="cursor-pointer  p-2 hover:bg-slate-100">
+              <Link  href={'/project'}>
                 <input
+                  className='cursor-pointer  hover:bg-slate-100'
                   type="button"
                   value="프로젝트 의뢰하기"
                   name="프로젝트 의뢰하기"
@@ -105,39 +121,55 @@ const Sidebar: FC = () => {
           </ul>
           <hr className="border-2 border-[#000]"></hr>
 
-          <ol className="m-auto py-5 text-center">
-            {!session ? (
-              <>
-                <li
-                  className="block cursor-pointer p-2 hover:bg-slate-100"
-                  onClick={() => signIn()}
+          <ol
+                  className={cn(
+                    "block cursor-pointer p-2 pb-5 mx-auto text-center "
+                  )}
                 >
-                  로그인
-                </li>
-                <li className="cursor-pointer p-2 hover:bg-slate-100">
-                  <Link href="/signup">회원가입</Link>
-                </li>
-              </>
-            ) : (
-              <>
-                <a
-                  onClick={() =>
-                    headerMenuHandler(`mypage/${session?.user.userId}`)
-                  }
-                >
-                  <li className="cursor-pointer p-2 hover:bg-slate-100">
-                    {session.user.name} 님
-                  </li>
-                </a>
-                <li
-                  className="cursor-pointer p-2 hover:bg-slate-100"
-                  onClick={() => signOut()}
-                >
-                  로그아웃
-                </li>
-              </>
-            )}
-          </ol>
+                  {!session ? (
+                    <>
+                      <button className="block w-full text-center mx-auto cursor-pointer p-2 mb-1 hover:bg-slate-100" onClick={() => signIn()}>
+                        로그인
+                      </button>
+                      
+                      <Link className="block cursor-pointer p-2 hover:bg-slate-100" href="/signup">회원가입</Link>
+                    </>
+                  ) : profile === null ? (
+                    <>
+                      <Link href={`/mypage`}onClick={() => headerMenuHandler('')}>
+                        <li  className="cursor-pointer p-2 hover:bg-slate-100">회원정보</li>
+                        {/* <li className="cursor-pointer p-2 hover:bg-slate-100">{session.user.name} 님</li> */}
+                      </Link>
+                  
+                      <button
+                               className="cursor-pointer p-2 hover:bg-slate-100"
+                        onClick={() => {
+                          signOut({
+                            callbackUrl: `/login`,
+                          });
+                        }}
+                      >
+                        로그아웃
+                      </button>
+                    </>
+                  ) : (
+                    <>
+                      <Link href={`/mypage`}>
+                        <li className="cursor-pointer p-2 hover:bg-slate-100">{profile.name} 님</li>
+                      </Link>
+                      <button
+                        className="cursor-pointer p-2 hover:bg-slate-100"
+                        onClick={() => {
+                          signOut({
+                            callbackUrl: `/login`,
+                          });
+                        }}
+                      >
+                        로그아웃
+                      </button>
+                    </>
+                  )}
+                </ol>
         </nav>
       </header>
       {}
