@@ -1,6 +1,6 @@
 const Footer = () => {
   return (
-    <div>
+    <div id="Footer">
       <div className="m-auto mt-4 w-full  bg-[#2c2b29] p-8 text-center text-sm text-[#999] md:text-left ">
         <ul className="m-auto flex w-[950px] justify-around lg:block lg:w-[100%] ">
           <li>회사명 : 위바이브(주) | wevibe Inc.</li>

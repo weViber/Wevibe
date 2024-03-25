@@ -1,6 +1,8 @@
 'use client';
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useRef } from 'react';
+
 
 const ScrollToTop = () => {
   const scrollUpImageRef = useRef<HTMLParagraphElement>(null); // p 요소에 대한 ref 생성
@@ -17,13 +19,7 @@ const ScrollToTop = () => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
 
-      if (scrollUpImageRef.current) {
-        if (scrollY > 300) {
-          scrollUpImageRef.current.style.display = 'block';
-        } else {
-          scrollUpImageRef.current.style.display = 'none';
-        }
-      }
+      
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -35,13 +31,13 @@ const ScrollToTop = () => {
 
   return (
     <>
-      <div className="fixed right-6 bottom-10 border-2 p-2 rounded-2xl border-[#000] z-50 bg-slate-50">
-        <p ref={scrollUpImageRef} className="mb-3 cursor-pointer" style={{ display: 'none' }} onClick={handleScrollToTop}>
+      <div className=" fixed right-6 bottom-10 border-[2px] p-2 rounded-2xl border-[#848484] z-50 bg-[#fcfcfc] opacity-99">
+        <p ref={scrollUpImageRef} className="mt-0.5 mb-2.5 cursor-pointer" onClick={handleScrollToTop}>
           <Image
             src="/img/UpArrow.png"
             alt="Scroll Up"
-            width={30}
-            height={30}
+            width={15}
+            height={15}
           />
         </p>
 
@@ -49,9 +45,21 @@ const ScrollToTop = () => {
           <Image
             src="/img/DownArrow.png"
             alt="Scroll Down"
-            width={30}
-            height={30}
+            width={15}
+            height={15}
           />
+        </p>
+
+        <p className="cursor-pointer">
+        <Link href={`/mypage`}>
+          <Image
+           className=" mt-3 cursor-pointer"
+            src="/img/Profile.png"
+            alt="Profile"
+            width={15}
+            height={15}
+          />
+          </Link>
         </p>
       </div>
     </>

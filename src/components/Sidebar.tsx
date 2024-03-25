@@ -53,7 +53,7 @@ const Sidebar: FC = () => {
     <div
       ref={sidebarRef}
       className={cn(
-        'relative z-[10] m-auto w-full bg-[#eeeeee] lg:absolute',
+        'relative z-[10] m-auto w-full  border-2 border-slate-50 bg-[#ffffff] opacity-99 lg:absolute shadow-lg ' ,
         isOpen ? 'flex' : 'hidden'
       )}
     >
@@ -142,7 +142,7 @@ const Sidebar: FC = () => {
                       </Link>
                   
                       <button
-                               className="cursor-pointer p-2 hover:bg-slate-100"
+                               className="w-full cursor-pointer p-2 hover:bg-slate-100"
                         onClick={() => {
                           signOut({
                             callbackUrl: `/login`,
@@ -155,7 +155,7 @@ const Sidebar: FC = () => {
                   ) : (
                     <>
                       <Link href={`/mypage`}>
-                        <li className="cursor-pointer p-2 hover:bg-slate-100">{profile.name} 님</li>
+                        <li className="w-full cursor-pointer p-2 hover:bg-slate-100">{profile.name} 님</li>
                       </Link>
                       <button
                         className="cursor-pointer p-2 hover:bg-slate-100"
