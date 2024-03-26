@@ -7,6 +7,7 @@ import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FcGoogle } from 'react-icons/fc';
+import { RiKakaoTalkFill } from 'react-icons/ri';
 import { toast } from 'react-toastify';
 import Button from '../Button';
 import InputFormik from '../InputFormik';
@@ -212,8 +213,8 @@ const SignUpForm = () => {
                   signIn('kakao', { redirect: true, callbackUrl: '/' })
                 }
               >
-                {/* <RiKakaoTalkFill className="text-xl" />
-                카카오로 시작하기 */}
+                <RiKakaoTalkFill className="text-xl" />
+                카카오로 시작하기
               </button>
               {/* <button
                 className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
