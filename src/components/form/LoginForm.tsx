@@ -6,7 +6,6 @@ import { useRef } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { MdEmail, MdKey } from 'react-icons/md';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import { SiNaver } from 'react-icons/si';
 import { toast } from 'react-toastify';
 import Button from '../Button';
 import IconInput from '../InputIcon';
@@ -57,7 +56,7 @@ const LoginForm = () => {
               <RiKakaoTalkFill className="text-xl" />
               카카오 로그인
             </button>
-            <button
+            {/* <button
               className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#00C900] px-5 py-3 font-medium text-white"
               onClick={() =>
                 signIn('naver', { redirect: true, callbackUrl: '/' })
@@ -65,7 +64,7 @@ const LoginForm = () => {
             >
               <SiNaver className="text-xl" />
               네이버 로그인
-            </button>
+            </button> */}
             <button
               className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
               onClick={() =>

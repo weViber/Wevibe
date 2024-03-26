@@ -5,7 +5,6 @@ import { resignReasonSchema } from '@/libs/validations';
 import axios from 'axios';
 import { Form, Formik } from 'formik';
 import { signOut, useSession } from 'next-auth/react';
-import Image from 'next/image';
 import { redirect, useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
 import InputFormik from '../../../../components/InputFormik';
@@ -60,21 +59,21 @@ const DeleteAccountForm = ({ params }: { params: { userId: string } }) => {
             {({ isSubmitting, errors, touched }) => (
               <Form className="flex flex-col gap-2 ">
                 <p className="text-center ">
-                  <Image
+                  {/* <Image
                     className="m-auto mb-[8px] mt-[10px] box-border block size-[170px] rounded-full border-2 border-gray-100 "
                     src={session?.user.image!}
                     width={200}
                     height={200}
                     alt={'user'}
-                  />
+                  /> */}
                 </p>
-                <p className="text-center  text-xl font-semibold">
+                {/* <p className="text-center  text-xl font-semibold">
                   <span className="text-center text-[#5B74E1]">
                     {session?.user.name}
                   </span>{' '}
                   님{' '}
-                </p>
-                <p className="mb-10 text-center text-xl font-semibold">
+                </p> */}
+                <p className="mt-2 mb-3 text-center text-xl font-semibold">
                   정말 탈퇴하시겠습니까?
                 </p>
 

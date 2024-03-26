@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { FcGoogle } from 'react-icons/fc';
 import { RiKakaoTalkFill } from 'react-icons/ri';
-import { SiNaver } from 'react-icons/si';
 import { toast } from 'react-toastify';
 import Button from '../Button';
 import InputFormik from '../InputFormik';
@@ -217,7 +216,7 @@ const SignUpForm = () => {
                 <RiKakaoTalkFill className="text-xl" />
                 카카오로 시작하기
               </button>
-              <button
+              {/* <button
                 className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
                 onClick={() =>
                   signIn('naver', { redirect: true, callbackUrl: '/' })
@@ -225,7 +224,7 @@ const SignUpForm = () => {
               >
                 <SiNaver className="text-xl" />
                 네이버로 시작하기
-              </button>
+              </button> */}
               <button
                 className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md border-2 bg-[#fff] px-5 py-3 font-medium text-black"
                 onClick={() =>

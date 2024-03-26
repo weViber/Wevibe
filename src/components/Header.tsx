@@ -140,8 +140,8 @@ const Header: FC = () => {
                     }
                     alt="Next.js Logo"
                     onClick={() => setIsOpen((open) => !open)}
-                    width={50}
-                    height={5}
+                    width={45}
+                    height={45}
                   />
                 </button>
               </div>

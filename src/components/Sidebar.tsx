@@ -133,11 +133,11 @@ const Sidebar: FC = () => {
                         로그인
                       </button>
                       
-                      <Link className="block cursor-pointer p-2 hover:bg-slate-100" href="/signup">회원가입</Link>
+                      <Link  className="block cursor-pointer p-2 hover:bg-slate-100"  href="/signup" onClick={() => headerMenuHandler('')}>회원가입</Link>
                     </>
                   ) : profile === null ? (
                     <>
-                      <Link href={`/mypage`}onClick={() => headerMenuHandler('')}>
+                      <Link href={`/mypage`} onClick={() => headerMenuHandler('')}>
                         <li  className="cursor-pointer p-2 hover:bg-slate-100">회원정보</li>
                         {/* <li className="cursor-pointer p-2 hover:bg-slate-100">{session.user.name} 님</li> */}
                       </Link>
