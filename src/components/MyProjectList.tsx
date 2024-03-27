@@ -8,6 +8,12 @@ interface MyProjectListProps {
   projects: Project[];
 }
 const MyProjectList: React.FC<MyProjectListProps> = ({ projects }) => {
+  // 프로젝트를 최신순으로 정렬
+  const sortedProjects = projects.sort((a, b) => {
+    // createdAt을 비교하여 내림차순으로 정렬
+    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  });
+
   return (
     <div
       id="dev"
@@ -20,8 +26,8 @@ const MyProjectList: React.FC<MyProjectListProps> = ({ projects }) => {
             의뢰한 프로젝트 목록
           </h3>
           <div className="container flex flex-col gap-8  ">
-            {projects &&
-              projects.map((project, index) => (
+            {sortedProjects &&
+              sortedProjects.map((project, index) => (
                 <Link
                   className="block w-full rounded-xl border-2 border-[#EAEAEA]  p-4 hover:bg-[#EAEAEA]  "
                   key={index}

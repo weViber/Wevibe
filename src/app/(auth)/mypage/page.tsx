@@ -129,7 +129,7 @@ const UserInfoForm = () => {
 
           <Link href={`/mypage/edit`}>
             <Button className="my-5 flex justify-center bg-[#F2F4FF] text-center font-bold text-[#5B74E1]">
-              회원 정보 수정하기 <span className='relative ml-2' >  &#10004; </span>
+              회원 정보 수정하기 <span className='relative ml-2' > 		&#10145;	 </span>
             </Button>
           </Link>
 

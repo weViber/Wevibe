@@ -231,7 +231,7 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
             <hr />
 
             {/* 프로젝트 내용 */}
-            <h4 className="  text-xl  font-semibold ">프로젝트 내용</h4>
+            <h4 className="  text-xl  font-semibold ">&#8810; 프로젝트 내용 &#8811;</h4>
             <div className=" text-base text-[#4f4f4f]">
               <p className="text-lg font-semibold text-black">프로젝트 분야</p>
               <p>
@@ -241,10 +241,10 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               </p>
               <br />
               <p className="text-lg font-semibold text-black">상세 기획 상태</p>
-              <p className="whitespace-pre-line"> - {detailedPlanningStatus}</p>
-              <br />
-              <p className="text-lg font-semibold text-black">기획문서</p>
-              <p> {project.detailedPlanningText}</p>
+              <p className="whitespace-pre-line"> - {detailedPlanningStatus} : {project.detailedPlanningText}</p>
+              {/* <br /> */}
+              {/* <p className="text-lg font-semibold text-black">기획문서</p>
+              <p> {project.detailedPlanningText}</p> */}
               <br />
               <p className="text-lg font-semibold text-black">
                 프로젝트 관련 기술
@@ -293,12 +293,12 @@ const MyProject: React.FC<MyProjectProps> = ({ project }) => {
               <p>{project.isFundingAvailableSub}</p>
             </div>
             <h5 className="text-lg">클라이언트 정보</h5>
-            <div className="whitespace-pre-line text-base leading-8 text-[#4f4f4f]">
+            <div className="whitespace-pre-line text-base text-[#4f4f4f]">
               <p> {applicantRequirements}</p>
               <p className="py-1" />
               <p>{applicantRequirementsSub}</p>
               <p>{project.isCollaborationTeamComposition}</p>
-              <hr className="my-4 opacity-70" />
+              <hr className="my-5 opacity-70" />
               <h5 className="mb-3 whitespace-pre-line text-lg text-black">
                 사전 검증 질문
               </h5>
