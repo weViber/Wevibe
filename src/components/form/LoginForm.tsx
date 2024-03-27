@@ -46,9 +46,12 @@ const LoginForm = () => {
           <h2 className="mt-4 from-black pt-9 text-center text-3xl font-bold  leading-8">
             로그인
           </h2>
-          <div className="mt-8">
+          <div className="">
+          <p className="my-3 text-center text-[#919191]">
+              간편 로그인
+            </p>
             <button
-              className="mt-5 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#FEE500] px-5 py-3 font-medium text-slate-900"
+              className="mt-6 flex w-full flex-row items-center justify-center gap-2 rounded-md bg-[#FEE500] px-5 py-3 font-medium text-slate-900"
               onClick={() =>
                 signIn('kakao', { redirect: true, callbackUrl: '/' })
               }
@@ -76,11 +79,12 @@ const LoginForm = () => {
             </button>
           </div>
           <div>
-            <p className="my-4 text-center text-[#919191]">
-              또는 이메일로 로그인
+          <hr className='mt-2 mb-6' />
+            <p className="-mb-1 text-center text-[#919191]">
+           회원 로그인
             </p>
           </div>
-          <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-0">
             <IconInput
               icon={<MdEmail />}
               ref={emailRef}
@@ -99,6 +103,7 @@ const LoginForm = () => {
               Login
             </Button>
           </form>
+          <hr className='mt-2 -mb-2' />
           <Button
             /* eslint-disable-next-line */
             className="bg-[#f2f2f2] text-[#5e5e5e] hover:bg-[#777] mt-4"

@@ -22,14 +22,14 @@ const SignUpForm = () => {
       <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
         <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <div className="mx-auto flex w-full max-w-[330px] flex-col gap-8 ">
-            <h1 className="mt-4 from-black pt-9 text-center text-3xl font-bold  leading-8">
+            <h1 className="mt-4 from-black pt-9 text-center text-3xl font-bold  ">
               회원가입
             </h1>
           
             <div>
-              <p className="mt-8  text-center text-xl text-[#919191]">
+              {/* <p className="mt-8  text-center text-xl text-[#919191]">
                 이메일로 회원가입
-              </p>
+              </p> */}
             </div>
             <Formik
               initialValues={{
@@ -70,8 +70,8 @@ const SignUpForm = () => {
               }}
             >
               {({ isSubmitting, errors, touched }) => (
-                <Form className="flex flex-col gap-2">
-                  <div className=" relative ">
+                <Form className="flex flex-col gap-0 ">
+                  <div className=" relative -mt-6 ">
                     <InputFormik
                       label="이메일"
                       name={'email'}
@@ -173,7 +173,7 @@ const SignUpForm = () => {
                     />
                   </div>
 
-                  <div className=" relative ">
+                  <div className=" relative  ">
                     <InputFormik
                       label="가입 경로"
                       name={'funnel'}
@@ -195,14 +195,17 @@ const SignUpForm = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="my-5 bg-[#5B74E1]"
+                    className="mt-7 mb-2 bg-[#5B74E1]"
                   >
-                    회원가입
+                    가입하기
                   </Button>
                 </Form>
               )}
             </Formik>
           </div>
+
+
+          <hr className=' -mb-4' />
           <div className="mb-4">
               <p className="my-3 pb-2 text-center text-xl text-[#919191]">
                 간편로그인
