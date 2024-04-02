@@ -182,6 +182,16 @@ const Work = () => {
           />
              </Link>
         </SwiperSlide>
+        <SwiperSlide className="swiper-slide">
+        <Link target='_blank' href='https://petsmealkorea.com/'>
+          <Image
+            src="/img/DOGGIENUTS.png"
+            width={700}
+            height={100}
+            alt="DOGGIENUTS"
+          />
+             </Link>
+        </SwiperSlide>
       </Swiper>
       </div>
     </>
