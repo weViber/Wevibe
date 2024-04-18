@@ -12,6 +12,7 @@ export async function POST(
   const { token } = params;
   const { password } = body;
 
+  // 유효한 토큰인지 확인
   const passwordResetToken = await prisma.passwordResetToken.findUnique({
     where: {
       token,
@@ -19,7 +20,7 @@ export async function POST(
       resetAt: null,
     },
   });
-
+ // 토큰이 유효하지 않을 경우
   if (!passwordResetToken) {
     return NextResponse.json(
       {
@@ -30,9 +31,9 @@ export async function POST(
       }
     );
   }
-
+  // 비밀번호를 저장한 후 비밀번호 암호화
   const hashedPassword = await bcrypt.hash(password, 12);
-
+  // 토큰정보에 있는 유저를 찾고 암호화된 비밀번호를 변경
   const updateUser = prisma.user.update({
     where: { id: passwordResetToken.tokenUserId },
     data: {
@@ -40,6 +41,7 @@ export async function POST(
     },
   });
 
+  // 비밀번호를 변경한 날짜로 변경
   const updateToken = prisma.passwordResetToken.update({
     where: {
       id: passwordResetToken.id,

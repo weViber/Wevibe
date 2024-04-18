@@ -23,15 +23,22 @@ const DeleteAccountForm = ({ params }: { params: { userId: string } }) => {
       <div className="m-auto mb-[60px] h-auto w-[40%] rounded-3xl bg-white pb-8 shadow-lg  drop-shadow-sm   lg:w-[60%] 2sm:w-[97%]">
         <div className="mx-auto mt-[165px] flex w-full max-w-[330px] flex-col gap-8 lg:px-4 2sm:px-4 ">
           <h1 className="mb-3 mt-7 pt-5 text-center text-3xl">회원탈퇴</h1>
+          
           <Formik
+          // 초기값 빈칸으로 설정, InputFormik의 name과 일치 해야 함
             initialValues={{
               reason: '',
             }}
+
+            // 만들어진 유효성 검사 적용
             validationSchema={resignReasonSchema}
+
             onSubmit={async (data, { setSubmitting, resetForm }) => {
               console.log(data);
               setSubmitting(true);
+              //회원탈퇴 시작
               try {
+                // 해당 경로로 axios를 통하여 입력된 탈퇴사유와 함께 전송
                 const response = await axios.post(
                   `/api/auth/delete-account/${userId}`,
                   {
@@ -39,14 +46,16 @@ const DeleteAccountForm = ({ params }: { params: { userId: string } }) => {
                   }
                 );
                 console.log(response);
-
+                
+                // 회원탈퇴가 성공했을 경우 즉 상태코드가 200일 경우, 회원탈퇴 성공 메시지가 나타나고, 로그아웃이 되며, 메인페이지로 이동된다.
                 if (response.status === 200) {
                   toast.success('회원탈퇴 성공!');
-                  signOut();
-                  resetForm();
-                  router.push('/');
+                  signOut(); // 로그아웃
+                  resetForm(); // 모든 필드값이 리셋
+                  router.push('/'); // 메인페이지로 이동
                 }
               } catch (error: any) {
+                // 에러가 발생했을 경우, An unexpected error occurred 에러 메시지가 나타남
                 toast.error(
                   error.response?.data?.message ||
                     'An unexpected error occurred'

@@ -11,13 +11,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
     const { email, name, password, company, rank, funnel } = body;
-
+    // user가 존재하는지 확인 (email)
     const user = await prisma.user.findUnique({
       where: {
         email,
       },
     });
-
+    // 존재하는 email이 아닐 경우
     if (user?.email) {
       return NextResponse.json(
         {
@@ -28,9 +28,9 @@ export async function POST(request: Request) {
         }
       );
     }
-
+    // 비밀번호를 생성 후 비밀번호 암호화
     const hashedPassword = await bcrypt.hash(password, 12);
-
+    // 입력받은 user정보를 받아서 저장하고 userId는 랜덤으로 생성된 UUID를 저장하고, 비밀번호는 암호화한 상태로 저장
     const newUser = await prisma.user.create({
       data: {
         userId: randomUUID(),
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
         funnel,
       },
     });
-
+    // 입력 받은 이메일로 인증메일 전송
     await verifyEmail({
       email: newUser.email,
       id: newUser.userId,

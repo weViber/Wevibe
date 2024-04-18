@@ -11,24 +11,31 @@ const Header: FC = () => {
   const { isOpen, setIsOpen } = useSidebar();
   const { data: session } = useSession();
 
-  // 세션이 로딩 될 때까지 로딩처리
-  const [profile, setProfile] = useState<any>(null);
-  const fetchUserProfile = async (): Promise<void> => {
-    try {
-      const response = await axios.get(`/api/auth/userInfo`);
-      if (!response) {
-        throw new Error('Failed to fetch data');
-      }
-      const fetchData = await response.data;
-      setProfile(fetchData);
-    } catch (error: any) {
-      console.error(error.message);
-    }
-  };
+// 세션이 로딩 될 때까지 로딩처리
+const [profile, setProfile] = useState<any>(null);
 
-  useEffect(() => {
-    fetchUserProfile();
-  }, [session]);
+const fetchUserProfile = async (): Promise<void> => {
+  try {
+    // 해당 경로에서 유저 정보를 가져옴
+    const response = await axios.get(`/api/auth/userInfo`);
+
+    // 유저 정보가 없을 경우, 에러 발생
+    if (!response) {
+      throw new Error('Failed to fetch data');
+    }
+    // 가져온 유저 정보를 fetchData에 넣고
+    const fetchData = await response.data;
+    // useState의 setProfile에 fetchData를 넣음
+    setProfile(fetchData);
+  } catch (error: any) {
+    console.error(error.message);
+  }
+};
+
+// 세션이 작동할 때 마다, 위의 fetchUserProfile 함수가 작동함
+useEffect(() => {
+  fetchUserProfile();
+}, [session]);
 
   return (
     <div className="w-full sm:m-auto   sm:w-[97%] 2sm:w-[95%] ">

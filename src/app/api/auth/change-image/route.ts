@@ -9,12 +9,14 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { image } = body;
 
+    // user가 존재하는지 확인
     const user = await prisma.user.findUnique({
       where: {
         userId: session?.user.userId,
       },
     });
 
+    // user가 없을 경우
     if (!user) {
       return NextResponse.json(
         {
@@ -26,6 +28,7 @@ export async function POST(request: Request) {
       );
     }
 
+    // 로그인을 하지 않았을 경우
     if (!session?.user.email) {
       return new NextResponse('Unauthorized', { status: 401 });
     }

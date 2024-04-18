@@ -24,10 +24,11 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   console.log('Edit Sessoin', session);
+  // 프로필 이미지 변경 모달 ON
   const openModal = () => {
     setModalIsOpen(true);
   };
-
+  // 프로필 이미지 변경 모달 OFF
   const closeModal = () => {
     setModalIsOpen(false);
   };
@@ -37,22 +38,28 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
 
   const fetchUserProfile = async (): Promise<void> => {
     try {
+      // 해당 경로에서 유저 정보를 가져옴
       const response = await axios.get(`/api/auth/userInfo`);
 
+      // 유저 정보가 없을 경우, 에러 발생
       if (!response) {
         throw new Error('Failed to fetch data');
       }
-
+      // 가져온 유저 정보를 fetchData에 넣고
       const fetchData = await response.data;
+      // useState의 setProfile에 fetchData를 넣음
       setProfile(fetchData);
     } catch (error: any) {
       console.error(error.message);
     }
   };
+
+  // 세션이 작동할 때 마다, 위의 fetchUserProfile 함수가 작동함
   useEffect(() => {
     fetchUserProfile();
   }, [session]);
 
+  // 위에 fetchData를 받은 setProfile을 통해 profile이 fetchData로 유저 정보를 전달받는데, 만약에 profile이 비어있다면 'loading' 메시지를 보여주고, 정보를 받아왔다면 받은 정보를 보여줌
   return profile === null ? (
     'loading'
   ) : (
@@ -78,22 +85,28 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
             </button>
           </div>
           <ImageChangeModal
+          // 프로필 이미지 변경 모달
             userId={params.userId}
             isOpen={modalIsOpen}
             onRequestClose={closeModal}
           />
 
           <Formik
+          // 가장 최근에 변경한 값으로 초기값 설정
             initialValues={{
               name: profile.name,
               company: profile.company,
               rank: profile.rank,
             }}
+
+            // 만들어진 유효성 검사 적용
             validationSchema={editUserSchema}
             onSubmit={async (data, { setSubmitting }) => {
               console.log(data);
               setSubmitting(true);
+              // 유저 정보 변경 시작
               try {
+                // 입력한 이름, 회사명, 직급을 해당경로로 저장 요청
                 const response = await axios.post(`/api/auth/editUserInfo`, {
                   name: data.name,
                   company: data.company,
@@ -101,12 +114,15 @@ const EditUserInfoForm = ({ params }: editUserProps) => {
                 });
                 console.log(response);
 
+                // 요청이 정상적으로 처리됬을 경우
                 if (response.status === 200) {
+                  // 로그인 상태인 경우, 현재 로그인 세션값을 변경한 값으로 적용
                   sessionUpdate({
                     name: data.name,
                     company: data.company,
                     updateRank: data.rank,
                   });
+                  // 변경 후 마이페이지로 이동
                   router.push(`/mypage`);
                   toast.success('회원정보 수정 성공!');
                 }

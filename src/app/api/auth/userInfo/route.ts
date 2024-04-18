@@ -6,13 +6,13 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-
+    // user가 존재하는지 확인하고, user의 정보를 가져옴
     const user = await prisma.user.findUnique({
       where: {
         userId: session?.user.userId,
       },
     });
-
+    // user가 없을 경우
     if (!user) {
       return NextResponse.json(
         {
@@ -23,7 +23,7 @@ export async function GET() {
         }
       );
     }
-
+    // 잘못된 email인 경우
     if (!session?.user.email) {
       return new NextResponse('Unauthorized', { status: 401 });
     }
