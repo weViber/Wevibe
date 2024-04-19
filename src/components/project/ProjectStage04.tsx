@@ -59,6 +59,7 @@ const ProjectStage04: React.FC<ProjectStage04Props> = ({ stage }) => {
   const isNextButtonDisabled =
     !availableBudget || !expectedStartDate || !expectedEndDate;
 
+    //근무일 수 계산하는 함수
   function calculateWeekdays(startDate: Date, endDate: Date) {
     let weekdaysCount = 0;
     let currentDate = new Date(startDate);
@@ -73,7 +74,7 @@ const ProjectStage04: React.FC<ProjectStage04Props> = ({ stage }) => {
 
     return weekdaysCount;
   }
-
+  // 근무일을 계산하여 useEffect를 통해 재랜더링
   useEffect(() => {
     if (
       expectedStartDate &&
